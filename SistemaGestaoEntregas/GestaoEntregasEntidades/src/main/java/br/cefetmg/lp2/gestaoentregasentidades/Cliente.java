@@ -30,11 +30,11 @@ public class Cliente {
     @Column(name = "cpf_cliente")
     private String cpf;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idEmpresa")
     private Empresa empresa;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "cliente")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<Pedido> pedidos;
 
     public void setId(int id) {

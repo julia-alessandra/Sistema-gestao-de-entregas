@@ -24,10 +24,10 @@ public class Empresa {
     @Column(name = "porcentagemComissao_empresa")
     private Double porcentagemComissaoEntregador;
 
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Funcionario> funcionarios;
     
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Cliente> clientes;
 
     public void setId(int id) {

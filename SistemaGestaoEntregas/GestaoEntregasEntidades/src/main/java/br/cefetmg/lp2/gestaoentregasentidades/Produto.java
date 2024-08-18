@@ -18,7 +18,7 @@ public class Produto {
     @Column(name = "localizacao_produto")
     private String localizacao;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "produto")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "produto")
     private List<ItemPedido> itemPedido;
 
     public void setId(int id) {
