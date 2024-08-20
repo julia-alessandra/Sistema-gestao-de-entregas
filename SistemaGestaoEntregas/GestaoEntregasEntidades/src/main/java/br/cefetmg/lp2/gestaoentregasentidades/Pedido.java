@@ -135,5 +135,5 @@ public class Pedido {
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
     }
-    
+
 }
