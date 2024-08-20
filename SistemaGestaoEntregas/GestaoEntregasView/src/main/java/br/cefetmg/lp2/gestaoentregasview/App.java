@@ -14,10 +14,16 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Scene telaInicial;
+    private static Scene cadastroPedido;
+    private static Scene adicionarProduto;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("telaInicial"), 640, 480);
+        adicionarProduto = new Scene(loadFXML("/br/cefetmg/lp2/gestaoentregasview/adicionarProduto"), 640, 480);
+        cadastroPedido = new Scene(loadFXML("/br/cefetmg/lp2/gestaoentregasview/cadastroPedido"), 640, 480);
+
         stage.setScene(scene);
         stage.show();
     }
@@ -25,7 +31,7 @@ public class App extends Application {
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
-
+    
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
