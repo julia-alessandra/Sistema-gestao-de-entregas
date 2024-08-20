@@ -14,8 +14,14 @@ public class Pedido {
     private int id;
 
     private Date data;
-    private Double valorTotal;
     private StatusPedido status;
+    private String nomeProduto;
+    private String quantidade;
+    private String valorUnitario;
+    private String valorTotal;
+    private String marcaProduto;
+    private String formaPagamento;
+    private String observacoes;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idCliente")
@@ -24,6 +30,16 @@ public class Pedido {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pedido")
     private List<ItemPedido> itensPedido;
 
+    public Pedido(String nomeProduto, String quantidade, String valorUnitario, String valorTotal, String marcaProduto, String formaPagamento, String observacoes) {
+        this.nomeProduto = nomeProduto;
+        this.quantidade = quantidade;
+        this.valorUnitario = valorUnitario;
+        this.valorTotal = valorTotal;
+        this.marcaProduto = marcaProduto;
+        this.formaPagamento = formaPagamento;
+        this.observacoes = observacoes;
+    }
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -40,11 +56,11 @@ public class Pedido {
         this.data = data;
     }
 
-    public Double getValorTotal() {
+    public String getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(Double valorTotal) {
+    public void setValorTotal(String valorTotal) {
         this.valorTotal = valorTotal;
     }
 
@@ -70,5 +86,53 @@ public class Pedido {
 
     public void setItensPedido(List<ItemPedido> itensPedido) {
         this.itensPedido = itensPedido;
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+
+    public String getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(String quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public String getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(String valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+
+    public String getMarcaProduto() {
+        return marcaProduto;
+    }
+
+    public void setMarcaProduto(String marcaProduto) {
+        this.marcaProduto = marcaProduto;
+    }
+
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
     }
 }

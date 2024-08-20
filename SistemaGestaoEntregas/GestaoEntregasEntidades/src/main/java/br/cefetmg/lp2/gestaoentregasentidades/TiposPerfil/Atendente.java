@@ -4,7 +4,7 @@ import br.cefetmg.lp2.gestaoentregasentidades.Perfil;
 import br.cefetmg.lp2.gestaoentregasentidades.TipoPerfil;
 import javax.persistence.*;
 
-@Entity
+@Entity 
 @Table
 public class Atendente extends Perfil {
     public Atendente() {
