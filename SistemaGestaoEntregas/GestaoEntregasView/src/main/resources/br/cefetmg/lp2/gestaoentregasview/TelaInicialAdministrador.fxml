@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="266.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMINISTRADOR">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Button fx:id="ButtonCadastrarFuncionario" layoutX="125.0" layoutY="109.0" mnemonicParsing="false" text="Cadastrar Funcionário">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="ButtonModificarEmpresa" layoutX="136.0" layoutY="185.0" mnemonicParsing="false" text="Modificar empresa">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="ButtonCadastrarFuncionario1" layoutX="337.0" layoutY="109.0" mnemonicParsing="false" text="Cadastrar produto">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="ButtonModificarEmpresa1" layoutX="336.0" layoutY="185.0" mnemonicParsing="false" text="Cadastrar produto">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="ButtonModificarEmpresa11" layoutX="137.0" layoutY="256.0" mnemonicParsing="false" text="Listar funcionários">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="ButtonModificarEmpresa111" layoutX="338.0" layoutY="256.0" mnemonicParsing="false" text="Listar Clientes">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="ButtonModificarEmpresa112" layoutX="148.0" layoutY="318.0" mnemonicParsing="false" text="Listar produtos">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
