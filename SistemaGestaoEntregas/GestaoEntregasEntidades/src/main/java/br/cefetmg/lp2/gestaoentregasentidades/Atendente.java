@@ -1,4 +1,4 @@
-package br.cefetmg.lp2.gestaoentregasentidades.TiposPerfil;
+package br.cefetmg.lp2.gestaoentregasentidades;
 
 import br.cefetmg.lp2.gestaoentregasentidades.Perfil;
 import br.cefetmg.lp2.gestaoentregasentidades.TipoPerfil;

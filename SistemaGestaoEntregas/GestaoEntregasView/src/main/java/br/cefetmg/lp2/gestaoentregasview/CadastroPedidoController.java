@@ -55,7 +55,7 @@ public class CadastroPedidoController {
                 alert.setContentText("Preencha todos os campos");
 
             } else {
-                Pedido pedido = new Pedido(nomeProduto, quantidade, valorUnitario, valorTotal, marca, formaPagamento, observacoes);
+                Pedido pedido = new Pedido();
 
                 pedidos.add(pedido);
                 alert.setAlertType(Alert.AlertType.INFORMATION);

@@ -30,14 +30,8 @@ public class Pedido {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pedido")
     private List<ItemPedido> itensPedido;
 
-    public Pedido(String nomeProduto, String quantidade, String valorUnitario, String valorTotal, String marcaProduto, String formaPagamento, String observacoes) {
-        this.nomeProduto = nomeProduto;
-        this.quantidade = quantidade;
-        this.valorUnitario = valorUnitario;
-        this.valorTotal = valorTotal;
-        this.marcaProduto = marcaProduto;
-        this.formaPagamento = formaPagamento;
-        this.observacoes = observacoes;
+    public Pedido() {
+
     }
     
     public void setId(int id) {

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
 
 public class EmpresaDAO {
-    
+
     public void inserir(Empresa empresa) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -54,13 +54,13 @@ public class EmpresaDAO {
         }
     }
 
-    public Empresa pesquisaId(int idEmpresa) {
+    public Empresa pesquisaNome(String nomeEmpresa) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            Query query = entityManager.createQuery("FROM Empresa AS u WHERE u.id_empresa =:id ");
-            query.setParameter("id", entityManager);
+            Query query = entityManager.createQuery("FROM Empresa AS u WHERE u.nome_empresa =:nome ");
+            query.setParameter("nomeEmpresa", entityManager);
             List<Empresa> pesquisa = query.getResultList();
             if (!pesquisa.isEmpty()) {
                 return pesquisa.get(0);
@@ -73,4 +73,29 @@ public class EmpresaDAO {
             return null;
         }
     }
+
+    public List<String> retornarNome() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        List<String> nomes = new ArrayList<>();
+
+        try {
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createNativeQuery("SELECT e.nome_empresa FROM empresa e");
+            nomes = query.getResultList();
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+
+        return nomes;
+    }
+    
 }

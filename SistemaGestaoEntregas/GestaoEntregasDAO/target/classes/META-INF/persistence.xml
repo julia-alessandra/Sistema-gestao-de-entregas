@@ -12,6 +12,9 @@
     <class>br.cefetmg.lp2.gestaoentregasentidades.TiposPerfil.Administrador</class>
     <class>br.cefetmg.lp2.gestaoentregasentidades.TiposPerfil.Entregador</class>
     <class>br.cefetmg.lp2.gestaoentregasentidades.Produto</class>
+    <class>br.cefetmg.lp2.gestaoentregasentidades.Entregador</class>
+    <class>br.cefetmg.lp2.gestaoentregasentidades.Administrador</class>
+    <class>br.cefetmg.lp2.gestaoentregasentidades.Atendente</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/GestaoEntregasBD"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
