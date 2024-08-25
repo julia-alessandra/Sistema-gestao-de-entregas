@@ -6,8 +6,14 @@ import javafx.scene.control.*;
 
 public class TelaInicialController {
 
+    App app;
+
     @FXML
     private Button buttomEntrarSistema;
 
+    public void cadastrarNovaEmpresa() throws IOException {
+        App.setRoot("CadastrarEmpresa");
+
+    }
 
 }

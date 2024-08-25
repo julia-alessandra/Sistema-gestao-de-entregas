@@ -18,7 +18,7 @@
       <TextField fx:id="textNomeFuncionario" layoutX="150.0" layoutY="65.0" />
       <TextField fx:id="textTelefoneFuncionario" layoutX="150.0" layoutY="127.0" />
       <TextField fx:id="textSenhaFuncionario" layoutX="151.0" layoutY="180.0" />
-      <Button fx:id="ButtonCadastrarFuncionario" layoutX="313.0" layoutY="337.0" mnemonicParsing="false" text="Cadastrar" />
+      <Button fx:id="ButtonCadastrarFuncionario" layoutX="313.0" layoutY="337.0" mnemonicParsing="false" onAction="#cadastrarFuncionario" text="Cadastrar" />
       <Text layoutX="64.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cargo:" />
       <ComboBox fx:id="ComboBoxCargos" layoutX="150.0" layoutY="288.0" prefWidth="150.0" />
    </children>

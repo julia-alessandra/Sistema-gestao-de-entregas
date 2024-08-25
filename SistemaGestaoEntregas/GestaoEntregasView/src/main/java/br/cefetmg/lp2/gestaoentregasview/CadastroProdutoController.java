@@ -7,7 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 
-public class CadastrarProdutoController implements Initializable {
+public class CadastroProdutoController implements Initializable {
 
 
         @FXML
