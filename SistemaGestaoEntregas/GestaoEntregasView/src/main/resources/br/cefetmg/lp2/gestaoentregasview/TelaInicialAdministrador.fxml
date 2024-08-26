@@ -5,47 +5,36 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="266.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMINISTRADOR">
+      <Text layoutX="207.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMINISTRADOR">
          <font>
-            <Font size="15.0" />
+            <Font name="Cambria Math" size="30.0" />
          </font>
       </Text>
-      <Button fx:id="ButtonCadastrarFuncionario" layoutX="125.0" layoutY="109.0" mnemonicParsing="false" text="Cadastrar Funcionário">
+      <Button fx:id="buttonEmpresa" layoutX="255.0" layoutY="156.0" mnemonicParsing="false" onAction="#abrirGerenciarEmpresa" prefHeight="43.0" prefWidth="140.0" text="Empresa">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonModificarEmpresa" layoutX="136.0" layoutY="185.0" mnemonicParsing="false" text="Modificar empresa">
+      <Button fx:id="buttonFuncionarios" layoutX="255.0" layoutY="97.0" mnemonicParsing="false" onAction="#abrirGerenciarFuncionarios" prefHeight="43.0" prefWidth="140.0" text="Funcionários">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonCadastrarFuncionario1" layoutX="337.0" layoutY="109.0" mnemonicParsing="false" text="Cadastrar produto">
+      <Button fx:id="buttonClientes" layoutX="255.0" layoutY="271.0" mnemonicParsing="false" onAction="#abrirGerenciarClientes" prefHeight="43.0" prefWidth="140.0" text="Clientes">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonModificarEmpresa1" layoutX="336.0" layoutY="185.0" mnemonicParsing="false" text="Cadastrar produto">
+      <Button fx:id="buttonProdutos" layoutX="255.0" layoutY="216.0" mnemonicParsing="false" onAction="#abrirGerenciarProdutos" prefHeight="43.0" prefWidth="140.0" text="Produtos">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonModificarEmpresa11" layoutX="137.0" layoutY="256.0" mnemonicParsing="false" text="Listar funcionários">
+      <Button fx:id="buttonPedidos" layoutX="255.0" layoutY="327.0" mnemonicParsing="false" onAction="#abrirGerenciarPedidos" prefHeight="43.0" prefWidth="140.0" text="Pedidos">
          <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="ButtonModificarEmpresa111" layoutX="338.0" layoutY="256.0" mnemonicParsing="false" text="Listar Clientes">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="ButtonModificarEmpresa112" layoutX="148.0" layoutY="318.0" mnemonicParsing="false" text="Listar produtos">
-         <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
          </font>
       </Button>
    </children>

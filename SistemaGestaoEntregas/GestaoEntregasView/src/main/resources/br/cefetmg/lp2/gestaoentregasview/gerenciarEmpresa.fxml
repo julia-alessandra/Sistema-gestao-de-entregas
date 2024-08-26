@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".TelaEmpresasController">
+   <stylesheets>
+      <URL value="@/styles/telaempresas.css" />
+   </stylesheets>
+   <children>
+      <Label layoutX="177.0" layoutY="35.0" text="Gerenciar Empresa">
+         <font>
+            <Font name="Cambria Math" size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="228.0" layoutY="200.0" mnemonicParsing="false" text="Emitir relatório">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="buttonEditarEmpresa" layoutX="228.0" layoutY="151.0" mnemonicParsing="false" onAction="#editarEmpresa" text="Editar empresa">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="buttonVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+   </children>
+</AnchorPane>

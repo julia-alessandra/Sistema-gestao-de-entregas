@@ -9,11 +9,17 @@ public class TelaInicialController {
     App app;
 
     @FXML
-    private Button buttomEntrarSistema;
+    private Button buttonCadastrarEmpresa;
+    
+    @FXML
+    private Button buttonEntrar;
 
     public void cadastrarNovaEmpresa() throws IOException {
         App.setRoot("CadastrarEmpresa");
-
+    }
+    
+    public void entrarNoSistema() throws IOException {
+        App.setRoot("telaLogin");
     }
 
 }
