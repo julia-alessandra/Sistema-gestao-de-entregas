@@ -22,11 +22,23 @@ public class Funcionario {
     private String senha;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idEmpresa", nullable = false)
+    @JoinColumn(name = "idempresa", nullable = false)
     private Empresa empresa;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "funcionario")
-    private List<Perfil> perfis;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "funcionario")
+    private Perfil perfil;
+
+    public Funcionario() {
+    }
+
+    public Funcionario(String nome, String telefone, String senha, Empresa empresa) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.empresa = empresa;
+    }
+
+
 
     public void setId(int id) {
         this.id = id;
@@ -60,12 +72,12 @@ public class Funcionario {
         this.senha = senha;
     }
 
-    public List<Perfil> getPerfis() {
-        return perfis;
+    public Perfil getPerfil() {
+        return perfil;
     }
 
-    public void setPerfis(List<Perfil> perfis) {
-        this.perfis = perfis;
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 
     public Empresa getEmpresa() {

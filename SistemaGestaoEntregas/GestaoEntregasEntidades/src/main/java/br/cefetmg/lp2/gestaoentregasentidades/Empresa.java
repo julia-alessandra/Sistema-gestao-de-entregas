@@ -18,9 +18,6 @@ public class Empresa {
     @Column(name = "cnpj_empresa")
     private String cnpj;
     
-    @Column(name = "cpf_empresa")
-    private String cpf;
-    
     @Column(name = "porcentagemComissao_empresa")
     private Double porcentagemComissaoEntregador;
 
@@ -29,6 +26,17 @@ public class Empresa {
     
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Cliente> clientes;
+
+    public Empresa(String nome, String cnpj, Double porcentagemComissaoEntregador) {
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.porcentagemComissaoEntregador = porcentagemComissaoEntregador;
+    }
+
+    public Empresa() {
+    }
+    
+    
 
     public void setId(int id) {
         this.id = id;
@@ -60,14 +68,6 @@ public class Empresa {
 
     public void setPorcentagemComissaoEntregador(Double porcentagemComissaoEntregador) {
         this.porcentagemComissaoEntregador = porcentagemComissaoEntregador;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public List<Funcionario> getFuncionarios() {

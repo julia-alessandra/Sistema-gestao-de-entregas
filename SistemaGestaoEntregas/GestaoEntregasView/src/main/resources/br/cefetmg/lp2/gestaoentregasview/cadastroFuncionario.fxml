@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.cefetmg.lp2.gestaoentregasview.CadastroFuncionarioController">
+
+   <children>
+      <ComboBox fx:id="ComboBoxEmpresas" layoutX="149.0" layoutY="235.0" prefWidth="150.0" />
+      <Text layoutX="51.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de funcionario" />
+      <Text layoutX="64.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empresas:" />
+      <Text layoutX="64.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" />
+      <Text layoutX="64.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:" />
+      <Text layoutX="64.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha:" />
+      <TextField fx:id="textNomeFuncionario" layoutX="150.0" layoutY="65.0" />
+      <TextField fx:id="textTelefoneFuncionario" layoutX="150.0" layoutY="127.0" />
+      <TextField fx:id="textSenhaFuncionario" layoutX="151.0" layoutY="180.0" />
+      <Button fx:id="ButtonCadastrarFuncionario" layoutX="313.0" layoutY="337.0" mnemonicParsing="false" onAction="#cadastrarFuncionario" text="Cadastrar" />
+      <Text layoutX="64.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cargo:" />
+      <ComboBox fx:id="ComboBoxCargos" layoutX="150.0" layoutY="288.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

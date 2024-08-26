@@ -21,8 +21,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("telaInicial"), 640, 480);
-        adicionarProduto = new Scene(loadFXML("/br/cefetmg/lp2/gestaoentregasview/adicionarProduto"), 640, 480);
-        cadastroPedido = new Scene(loadFXML("/br/cefetmg/lp2/gestaoentregasview/cadastroPedido"), 640, 480);
 
         stage.setScene(scene);
         stage.show();

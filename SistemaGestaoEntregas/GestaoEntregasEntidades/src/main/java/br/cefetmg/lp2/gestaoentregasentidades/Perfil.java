@@ -1,24 +1,32 @@
 package br.cefetmg.lp2.gestaoentregasentidades;
-import br.cefetmg.lp2.gestaoentregasentidades.Funcionario;
-import br.cefetmg.lp2.gestaoentregasentidades.TipoPerfil;
+
+import br.cefetmg.lp2.gestaoentregasentidades.*;
+import javax.persistence.Entity;
 import javax.persistence.*;
 
+
 @Entity
-@Table
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipoPerfil", discriminatorType = DiscriminatorType.STRING)
-public abstract class Perfil {
+@Table(name = "Perfil")
+public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Enumerated(EnumType.STRING)
-    @Column(insertable = false, updatable = false)
+    
+   @Enumerated(EnumType.STRING)
+    @Column(name = "id_tipoperfil", nullable = false)
     private TipoPerfil tipoPerfil;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idFuncionario", nullable = false)
     private Funcionario funcionario;
+
+    public Perfil(TipoPerfil tipoPerfil, Funcionario funcionario) {
+        this.tipoPerfil = tipoPerfil;
+        this.funcionario = funcionario;
+    }
+    
+    public Perfil() {
+    }
 
     public void setId(Long id) {
         this.id = id;

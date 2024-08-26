@@ -5,13 +5,10 @@
     <class>br.cefetmg.lp2.gestaoentregasentidades.ItemPedido</class>
     <class>br.cefetmg.lp2.gestaoentregasentidades.Cliente</class>
     <class>br.cefetmg.lp2.gestaoentregasentidades.Pedido</class>
+    <class>br.cefetmg.lp2.gestaoentregasentidades.Produto</class>
     <class>br.cefetmg.lp2.gestaoentregasentidades.Empresa</class>
-    <class>br.cefetmg.lp2.gestaoentregasentidades.TiposPerfil.Atendente</class>
     <class>br.cefetmg.lp2.gestaoentregasentidades.Funcionario</class>
     <class>br.cefetmg.lp2.gestaoentregasentidades.Perfil</class>
-    <class>br.cefetmg.lp2.gestaoentregasentidades.TiposPerfil.Administrador</class>
-    <class>br.cefetmg.lp2.gestaoentregasentidades.TiposPerfil.Entregador</class>
-    <class>br.cefetmg.lp2.gestaoentregasentidades.Produto</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/GestaoEntregasBD"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
