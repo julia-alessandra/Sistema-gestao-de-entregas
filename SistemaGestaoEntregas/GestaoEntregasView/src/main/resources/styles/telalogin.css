@@ -1,7 +1,8 @@
-/*
- * Empty Stylesheet file.
- */
 
 .mainFxmlClass {
 
+}
+
+#box {
+    -fx-color: #3a4659;
 }

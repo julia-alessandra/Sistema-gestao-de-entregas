@@ -4,19 +4,40 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.cefetmg.lp2.gestaoentregasview.TelaLoginController">
+<HBox id="fundoTela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../../styles/tela.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.cefetmg.lp2.gestaoentregasview.TelaLoginController">
    <children>
-      <Button fx:id="buttonLogin" layoutX="270.0" layoutY="231.0" mnemonicParsing="false" onAction="#fazerLogin" text="ENTRAR" />
-      <TextField layoutX="225.0" layoutY="135.0" promptText="CPF" />
-      <Button fx:id="buttonVoltar" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
-      <PasswordField layoutX="225.0" layoutY="180.0" promptText="Senha" />
-      <Label layoutX="256.0" layoutY="72.0" text="LOGIN">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
+      <VBox>
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../styles/telalogin.css">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#23142e" height="274.0" layoutX="192.0" layoutY="103.0" stroke="TRANSPARENT" strokeType="INSIDE" width="256.0" />
+                  <Button id="buttonEntrarLogin" fx:id="buttonLogin" layoutX="289.0" layoutY="310.0" mnemonicParsing="false" onAction="#fazerLogin" stylesheets="@../../../../styles/botao.css" text="ENTRAR" />
+                  <TextField layoutX="244.0" layoutY="200.0" promptText="CPF" />
+                  <Button fx:id="buttonVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" prefHeight="15.0" prefWidth="32.0" style="-fx-background-color: 0;">
+                     <graphic>
+                        <ImageView fitHeight="48.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/iconeVoltarBranco.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <PasswordField layoutX="244.0" layoutY="253.0" promptText="Senha" />
+                  <Label layoutX="270.0" layoutY="122.0" text="LOGIN" textFill="WHITE">
+                     <font>
+                        <Font name="Cambria Math" size="35.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</HBox>

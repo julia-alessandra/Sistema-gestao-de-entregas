@@ -1,0 +1,20 @@
+
+.mainFxmlClass {
+
+}
+
+#fundoTelaInicial{
+    -fx-background-image: url("../images/fundoTelaInicial.png");
+    -fx-background-position: center;
+    -fx-background-size: cover;
+}
+
+/*
+#buttonEntrar, #buttonCadastrarEmpresa {
+    -fx-background-color: #ffffff;
+}
+
+#buttonEntrar:hover, #buttonCadastrarEmpresa:hover {
+    -fx-background-color: #dbdbdb;
+}
+*/
