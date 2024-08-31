@@ -1,5 +1,6 @@
 package br.cefetmg.lp2.gestaoentregasview;
 
+import br.cefetmg.lp2.gestaoentregasentidades.Funcionario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,30 +8,34 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class GerenciarClientesController implements Initializable {
+public class ListarFuncionariosController implements Initializable {
 
     @FXML
-    private Button buttonCadastrarCliente;
-
-    @FXML
-    private Button buttonListarClientes;
+    private Button buttonAtualizar;
 
     @FXML
     private Button buttonVoltar;
 
     @FXML
-    void cadastrarCliente() throws IOException {
-        App.setRoot("cadastroCliente");
-    }
+    private TableColumn<Funcionario, String> colCargo;
 
     @FXML
-    void listarClientes() throws IOException {
-        App.setRoot("listarClientes");
+    private TableColumn<Funcionario, String> colNome;
+
+    @FXML
+    private TableColumn<Funcionario, String> colTelefone;
+
+    @FXML
+    private TableView<Funcionario> tabelaFuncionarios;
+
+    @FXML
+    void atualizarDados() {
+
     }
 
     @FXML
     void voltar() throws IOException {
-        App.setRoot("TelaInicialAdministrador");
+        App.setRoot("gerenciarFuncionarios");
     }
     
     /**

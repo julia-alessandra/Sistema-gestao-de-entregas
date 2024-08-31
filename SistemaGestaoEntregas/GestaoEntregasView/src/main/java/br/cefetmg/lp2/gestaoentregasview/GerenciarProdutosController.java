@@ -10,7 +10,23 @@ import javafx.scene.control.Button;
 public class GerenciarProdutosController implements Initializable {
 
     @FXML
+    private Button buttonCadastrarProduto;
+
+    @FXML
+    private Button buttonListarProdutos;
+
+    @FXML
     private Button buttonVoltar;
+
+    @FXML
+    void cadastrarProduto() throws IOException {
+        App.setRoot("cadastroProduto");
+    }
+
+    @FXML
+    void listarProdutos() throws IOException {
+        App.setRoot("listarProdutos");
+    }
 
     @FXML
     void voltar() throws IOException {

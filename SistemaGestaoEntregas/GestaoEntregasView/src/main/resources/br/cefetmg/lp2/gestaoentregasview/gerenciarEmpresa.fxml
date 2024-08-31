@@ -1,29 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".TelaEmpresasController">
-   <stylesheets>
-      <URL value="@/styles/telaempresas.css" />
-   </stylesheets>
+<HBox id="fundoTela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../../styles/tela.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.cefetmg.lp2.gestaoentregasview.GerenciarEmpresaController">
    <children>
-      <Label layoutX="177.0" layoutY="35.0" text="Gerenciar Empresa">
-         <font>
-            <Font name="Cambria Math" size="30.0" />
-         </font>
-      </Label>
-      <Button layoutX="228.0" layoutY="200.0" mnemonicParsing="false" text="Emitir relatório">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Button fx:id="buttonEditarEmpresa" layoutX="228.0" layoutY="151.0" mnemonicParsing="false" onAction="#editarEmpresa" text="Editar empresa">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Button fx:id="buttonVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <VBox>
+         <children>
+            <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass">
+               <children>
+                  <Label layoutX="375.0" layoutY="49.0" text="Gerenciar Empresa" textFill="WHITE">
+                     <font>
+                        <Font name="Cambria Math" size="60.0" />
+                     </font>
+                  </Label>
+                  <Button id="buttonListarFuncionarios" fx:id="buttonEmitirRelatorio" layoutX="465.0" layoutY="360.0" mnemonicParsing="false" onAction="#emitirRelatorio" prefHeight="68.0" prefWidth="311.0" stylesheets="@../../../../styles/botao.css" text="Emitir relatório">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Button>
+                  <Button id="buttonCadastrarFuncionario" fx:id="buttonEditarEmpresa" layoutX="465.0" layoutY="255.0" mnemonicParsing="false" onAction="#editarEmpresa" prefHeight="68.0" prefWidth="311.0" stylesheets="@../../../../styles/botao.css" text="Editar empresa">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Button>
+                  <Button id="buttonVoltar" fx:id="buttonVoltar" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltar" prefHeight="15.0" prefWidth="32.0" style="-fx-background-color: 0;" stylesheets="@../../../../styles/botao.css">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/iconeVoltarBranco.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</HBox>

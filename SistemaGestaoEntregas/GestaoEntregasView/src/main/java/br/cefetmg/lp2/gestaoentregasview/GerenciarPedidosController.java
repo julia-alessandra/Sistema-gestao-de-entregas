@@ -1,5 +1,6 @@
 package br.cefetmg.lp2.gestaoentregasview;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -9,27 +10,27 @@ import javafx.scene.control.*;
 public class GerenciarPedidosController implements Initializable {
 
     @FXML
-    private Button buttonCadastrarProduto;
+    private Button buttonCadastrarPedido;
 
     @FXML
-    private Button buttonListarProdutos;
+    private Button buttonListarPedidos;
 
     @FXML
     private Button buttonVoltar;
 
     @FXML
-    void cadastrarProduto() {
-
+    void cadastrarPedido() throws IOException {
+        App.setRoot("cadastroPedido");
     }
 
     @FXML
-    void listarProdutos() {
-
+    void listarPedidos() throws IOException {
+        App.setRoot("listarPedidos");
     }
 
     @FXML
-    void voltar() {
-
+    void voltar() throws IOException {
+        App.setRoot("TelaInicialAdministrador");
     }
     
     /**

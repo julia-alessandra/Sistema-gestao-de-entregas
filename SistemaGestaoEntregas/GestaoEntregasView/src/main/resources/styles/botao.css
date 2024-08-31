@@ -4,8 +4,13 @@
 
 .button:hover {
     -fx-background-color: #dbdbdb;
+    -fx-cursor: hand;
 }
 
-#buttonEntrarLogin {
+#buttonEntrarLogin, #buttonAtualizar {
     -fx-background-color: #8a9efb;
+}
+
+#buttonEntrarLogin:hover, #buttonAtualizar:hover {
+    -fx-background-color: #7485d4;
 }

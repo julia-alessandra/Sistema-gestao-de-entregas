@@ -10,11 +10,13 @@ import javafx.scene.control.Button;
 public class GerenciarEmpresaController implements Initializable {
 
     @FXML
-    private Button buttonVoltar;
-
-    @FXML
     private Button buttonEditarEmpresa;
 
+    @FXML
+    private Button buttonEmitirRelatorio;
+
+    @FXML
+    private Button buttonVoltar;
 
     @FXML
     void editarEmpresa() throws IOException {
@@ -22,9 +24,15 @@ public class GerenciarEmpresaController implements Initializable {
     }
     
     @FXML
+    void emitirRelatorio() {
+
+    }
+    
+    @FXML
     void voltar() throws IOException {
         App.setRoot("TelaInicialAdministrador");
     }
+    
     
     /**
      * Initializes the controller class.
