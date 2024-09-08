@@ -9,16 +9,11 @@ public class Funcionario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_funcionario")
     private int id;
 
-    @Column(name = "nome_funcionario")
     private String nome;
-
-    @Column(name = "telefone_funcionario")
     private String telefone;
-
-    @Column(name = "senha_funcionario")
+    private String cpf;
     private String senha;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -31,14 +26,13 @@ public class Funcionario {
     public Funcionario() {
     }
 
-    public Funcionario(String nome, String telefone, String senha, Empresa empresa) {
+    public Funcionario(String nome, String telefone, String cpf, String senha, Empresa empresa) {
         this.nome = nome;
         this.telefone = telefone;
+        this.cpf = cpf;
         this.senha = senha;
         this.empresa = empresa;
     }
-
-
 
     public void setId(int id) {
         this.id = id;
@@ -70,6 +64,14 @@ public class Funcionario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Perfil getPerfil() {

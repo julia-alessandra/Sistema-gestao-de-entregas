@@ -19,11 +19,9 @@
          </font>
       </Text>
       <TextField fx:id="TextNomeProduto" layoutX="110.0" layoutY="101.0" />
-      <TextArea fx:id="TextDescricaoProduto" layoutX="108.0" layoutY="200.0" prefHeight="101.0" prefWidth="302.0" />
+      <TextArea fx:id="TextLocalizacaoProduto" layoutX="108.0" layoutY="200.0" prefHeight="101.0" prefWidth="302.0" />
       <Text layoutX="17.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" />
-      <Text layoutX="17.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" />
+      <Text layoutX="17.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Localização:" />
       <Button fx:id="ButtonCadastrarProduto" layoutX="267.0" layoutY="340.0" mnemonicParsing="false" text="Cadastrar" />
-      <Text layoutX="17.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Unitário:" />
-      <TextField fx:id="TextValorProduto" layoutX="110.0" layoutY="147.0" />
    </children>
 </AnchorPane>

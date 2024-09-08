@@ -13,13 +13,15 @@
       <Text layoutX="51.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de funcionario" />
       <Text layoutX="64.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empresas:" />
       <Text layoutX="64.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" />
-      <Text layoutX="64.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:" />
-      <Text layoutX="64.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha:" />
+      <Text layoutX="57.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:" />
+      <Text layoutX="64.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha:" />
       <TextField fx:id="textNomeFuncionario" layoutX="150.0" layoutY="65.0" />
-      <TextField fx:id="textTelefoneFuncionario" layoutX="150.0" layoutY="127.0" />
-      <TextField fx:id="textSenhaFuncionario" layoutX="151.0" layoutY="180.0" />
+      <TextField fx:id="textTelefoneFuncionario" layoutX="149.0" layoutY="114.0" />
+      <TextField fx:id="textSenhaFuncionario" layoutX="149.0" layoutY="193.0" />
       <Button fx:id="ButtonCadastrarFuncionario" layoutX="313.0" layoutY="337.0" mnemonicParsing="false" onAction="#cadastrarFuncionario" text="Cadastrar" />
       <Text layoutX="64.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cargo:" />
       <ComboBox fx:id="ComboBoxCargos" layoutX="150.0" layoutY="288.0" prefWidth="150.0" />
+      <Text layoutX="64.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF:" />
+      <TextField fx:id="textCpfFuncionario" layoutX="149.0" layoutY="159.0" />
    </children>
 </AnchorPane>

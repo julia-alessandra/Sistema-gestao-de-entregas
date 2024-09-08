@@ -14,14 +14,8 @@ public class Pedido {
     private int id;
 
     private Date data;
-    private StatusPedido status;
-    private String nomeProduto;
-    private String quantidade;
-    private String valorUnitario;
-    private String valorTotal;
-    private String marcaProduto;
-    private String formaPagamento;
-    private String observacoes;
+    private String status;
+    private Double valorTotal;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idCliente")
@@ -30,6 +24,14 @@ public class Pedido {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pedido")
     private List<ItemPedido> itensPedido;
 
+    public Pedido(Date data, String status, Double valorTotal, Cliente cliente, List<ItemPedido> itensPedido) {
+        this.data = data;
+        this.status = status;
+        this.valorTotal = valorTotal;
+        this.cliente = cliente;
+        this.itensPedido = itensPedido;
+    }
+    
     public Pedido() {
 
     }
@@ -50,19 +52,19 @@ public class Pedido {
         this.data = data;
     }
 
-    public String getValorTotal() {
+    public Double getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(String valorTotal) {
+    public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
     }
 
-    public StatusPedido getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(StatusPedido status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -80,54 +82,6 @@ public class Pedido {
 
     public void setItensPedido(List<ItemPedido> itensPedido) {
         this.itensPedido = itensPedido;
-    }
-
-    public String getNomeProduto() {
-        return nomeProduto;
-    }
-
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
-    }
-
-    public String getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(String quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public String getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public void setValorUnitario(String valorUnitario) {
-        this.valorUnitario = valorUnitario;
-    }
-
-    public String getMarcaProduto() {
-        return marcaProduto;
-    }
-
-    public void setMarcaProduto(String marcaProduto) {
-        this.marcaProduto = marcaProduto;
-    }
-
-    public String getFormaPagamento() {
-        return formaPagamento;
-    }
-
-    public void setFormaPagamento(String formaPagamento) {
-        this.formaPagamento = formaPagamento;
-    }
-
-    public String getObservacoes() {
-        return observacoes;
-    }
-
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
     }
 
 }

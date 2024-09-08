@@ -1,14 +1,16 @@
 package br.cefetmg.lp2.gestaoentregasview;
 
-import br.cefetmg.lp2.gestaoentregasentidades.Pedido;
-import java.net.URL;
+import br.cefetmg.lp2.gestaoentregascontroller.*;
+import br.cefetmg.lp2.gestaoentregasentidades.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.Date;
+import java.util.List;
+import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 public class CadastroPedidoController {
 
@@ -16,77 +18,110 @@ public class CadastroPedidoController {
     private Button BotaoCadastrarPedido;
 
     @FXML
-    private TableColumn<?, ?> ColunaProdutosPedidos;
+    private ComboBox<String> ComboBoxCliente;
 
     @FXML
-    private TableColumn<?, ?> ColunaValorUnitarioPedido;
+    private ComboBox<String> ComboBoxStatus;
 
     @FXML
-    private ComboBox<?> ComboBoxAtendentePedido;
+    private Label LabelValorTotal;
 
     @FXML
-    private ComboBox<?> ComboBoxEntregadorPedido;
+    private Button BotaoCadastrarItemPedido;
 
     @FXML
-    private ComboBox<?> ComboBoxStatusPedido;
+    private TableColumn<ItemPedido, String> ColunaProdutosPedidos;
 
     @FXML
-    private TextField TextIdProdutosPedido;
+    private TableColumn<ItemPedido, Double> ColunaValorUnitarioPedido;
 
     @FXML
-    private TextArea TextObservacoesPedido;
+    private ComboBox<String> ComboBoxProdutosPedido;
 
     @FXML
-    private TextField TextValorTotalPedido;
+    private TableView<ItemPedido> TabelaProdutosPedido;
+
+    @FXML
+    private TextField TextValorProdutolPedido;
+
+    @FXML
+    private TextField TextQntProdutolPedido;
+
+    Double valorTotal = 0.0;
+
+    PedidoController pedidoController = new PedidoController();
+    ClienteController clienteController = new ClienteController();
+    ProdutoController produtoController = new ProdutoController();
+    ItemPedidoController itemController = new ItemPedidoController();
+
+    Pedido pedido = new Pedido();
 
     @FXML
     private void initialize() {
+        carregaProdutos();
+        /*carregaItensPedidos();*/
+        carregaClientes();
+        ComboBoxStatus.getItems().addAll("Em Preparação", "Saiu para entrega", "Entregue");
     }
 
-//        @FXML
-//        public void salvarPedido() {
-//            String nomeProduto = comboBoxProduto.getSelectionModel().getSelectedItem();
-//            String quantidade = textFieldQuantidade.getText();
-//            String valorUnitario = textFieldValorUnitario.getText();
-//            String valorTotal = textFieldValorTotal.getText();
-//            String marca = textFieldMarca.getText();
-//            String formaPagamento = textFieldFormaPagamento.getText();
-//            String observacoes = textAreaObservacoes.getText();
-//
-//            ArrayList<Pedido> pedidos = new ArrayList<>();
-//
-//            Alert alert = new Alert(Alert.AlertType.NONE);
-//            try {
-//
-//                if (nomeProduto == null || quantidade.isEmpty() || valorUnitario.isEmpty() || valorTotal.isEmpty() || marca.isEmpty() || formaPagamento.isEmpty() || observacoes.isEmpty()) {
-//                    alert.setAlertType(Alert.AlertType.ERROR);
-//                    alert.setContentText("Preencha todos os campos");
-//
-//                } else {
-//                    Pedido pedido = new Pedido();
-//
-//                    pedidos.add(pedido);
-//                    alert.setAlertType(Alert.AlertType.INFORMATION);
-//                    alert.setContentText("Pedido cadastrado com sucesso! ");
-//                }
-//
-//            } catch (Exception ex) {
-//                System.out.println(ex.toString());
-//                alert.setAlertType(Alert.AlertType.ERROR);
-//                alert.setContentText("Error: " + ex.getMessage());
-//            }
-//            alert.show(); //exibe a mensagem
-//            resetarCadastro(); //limpa os campos
-//        }
+    public void salvarItemPedido() {
 
+        Produto produto = produtoController.pesquisarNome(ComboBoxProdutosPedido.getValue());
+        Double valorUnitario = Double.valueOf(TextValorProdutolPedido.getText());
+        Double quantidadeProduto = Double.valueOf(TextQntProdutolPedido.getText());
 
-//    private void resetarCadastro() {
-//        comboBoxProduto.setValue(null);
-//        textFieldQuantidade.setText(null);
-//        textFieldValorUnitario.setText(null);
-//        textFieldValorTotal.setText(null);
-//        textFieldMarca.setText(null);
-//        textFieldFormaPagamento.setText(null);
-//        textAreaObservacoes.setText(null);
-//    }
+        ItemPedido itemPedido = new ItemPedido(valorUnitario, quantidadeProduto, pedido, produto);
+
+        itemController.cadastrar(itemPedido);
+    }
+
+    void carregaProdutos() {
+        List<Produto> lista = new ArrayList<>();
+        lista = produtoController.listar();
+        for (Produto produto : lista) {
+            ComboBoxProdutosPedido.getItems().add(produto.getNome());
+        }
+    }
+
+    void carregaClientes() {
+        List<Cliente> lista = new ArrayList<>();
+        lista = clienteController.listar();
+        for (Cliente cliente : lista) {
+            ComboBoxCliente.getItems().add(cliente.getNome());
+        }
+    }
+
+    public void salvarPedido() {
+        List<ItemPedido> listaItens = itemController.listar();
+        Date dataHoraAtual = new Date();
+        String status = ComboBoxStatus.getValue();
+        Double valor = calculaValorTotal();
+        Cliente cliente = clienteController.pesquisarNome(ComboBoxCliente.getValue());
+
+        Pedido pedido = new Pedido((java.sql.Date) dataHoraAtual, status, valor, cliente, listaItens);
+
+        pedidoController.cadastrar(pedido);
+    }
+
+    Double calculaValorTotal() {
+        List<ItemPedido> listaItens = itemController.listar();
+        for (ItemPedido itemPedido : listaItens) {
+            valorTotal += itemPedido.getValorUnitario();
+        }
+        return valorTotal;
+
+    }
+
+/*
+ * void carregaItensPedidos() { List<ItemPedido> listaItens =
+ * itemController.listar(); ObservableList<ItemPedido> observableListaItens =
+ * FXCollections.observableArrayList(listaItens);
+ *
+ * ColunaProdutosPedidos.setCellValueFactory(cellData -> new
+ * SimpleStringProperty(cellData.getValue().getProduto().getNome());
+ * ColunaValorUnitarioPedido.setCellValueFactory(cellData -> new
+ * SimpleObjectProperty<>(cellData.getValue().getValorUnitario()));
+ *
+ * TabelaProdutosPedido.setItems(observableListaItens);}
+ */
 }

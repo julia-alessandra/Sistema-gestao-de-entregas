@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class TelaInicialController {
+public class InicioController {
 
     App app;
 
@@ -15,11 +15,11 @@ public class TelaInicialController {
     private Button buttonEntrar;
 
     public void cadastrarNovaEmpresa() throws IOException {
-        App.setRoot("CadastrarEmpresa");
+        App.setRoot("FXMLCadastrarEmpresa");
     }
     
     public void entrarNoSistema() throws IOException {
-        App.setRoot("telaLogin");
+        App.setRoot("FXMLTelaLogin");
     }
 
 }

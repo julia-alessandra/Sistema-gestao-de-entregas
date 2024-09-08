@@ -2,19 +2,17 @@ package br.cefetmg.lp2.gestaoentregasentidades;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table
 public class ItemPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_itemPedido")
     private int id;
 
-    @Column(name = "valorUnitario_itemPedido")
     private Double valorUnitario;
     
-    @Column(name = "quantidade_itemPedido")
-    private Integer quantidade;
+    private Double quantidade;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idPedido")
@@ -23,7 +21,19 @@ public class ItemPedido {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idProduto")
     private Produto produto;
+    
 
+    public ItemPedido(Double valorUnitario, Double quantidade, Pedido pedido, Produto produto) {
+        this.valorUnitario = valorUnitario;
+        this.quantidade = quantidade;
+        this.pedido = pedido;
+        this.produto = produto;
+    }
+
+    public ItemPedido() {
+    }
+
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -40,11 +50,11 @@ public class ItemPedido {
         this.valorUnitario = valorUnitario;
     }
 
-    public Integer getQuantidade() {
+    public Double getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Integer quantidade) {
+    public void setQuantidade(Double quantidade) {
         this.quantidade = quantidade;
     }
 
