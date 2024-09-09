@@ -1,0 +1,77 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+    <?import javafx.scene.chart.*?>
+    <?import javafx.scene.control.*?>
+    <?import javafx.scene.layout.*?>
+    <?import javafx.scene.text.*?>
+
+    <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="br.cefetmg.lp2.gestaoentregasview.RelatoriosController">
+        <top>
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Relatórios de Vendas e Desempenho" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            </HBox>
+        </top>
+        <center>
+            <TabPane>
+                <!-- Tab for Products -->
+                <Tab text="Produtos">
+                    <VBox spacing="10" padding="10">
+                        <TableView fx:id="tableProdutos">
+                            <columns>
+                                <TableColumn text="ID" fx:id="colunaIdProduto"/>
+                                <TableColumn text="Nome" fx:id="colunaNomeProduto"/>
+                                <TableColumn text="Preço" fx:id="colunaPrecoProduto"/>
+                                <TableColumn text="Quantidade em Estoque" fx:id="colunaQuantidadeProduto"/>
+                            </columns>
+                        </TableView>
+                        <BarChart fx:id="graficoVendasProdutos" title="Vendas de Produtos">
+                            <xAxis>
+                                <CategoryAxis label="Produto"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Vendas"/>
+                            </yAxis>
+                        </BarChart>
+                    </VBox>
+                </Tab>
+
+                <!-- Tab for Employees -->
+                <Tab text="Funcionários">
+                    <VBox spacing="10" padding="10">
+                        <TableView fx:id="tableFuncionarios">
+                            <columns>
+                                <TableColumn text="ID" fx:id="colunaIdFuncionario"/>
+                                <TableColumn text="Nome" fx:id="colunaNomeFuncionario"/>
+                                <TableColumn text="Cargo" fx:id="colunaCargoFuncionario"/>
+                                <TableColumn text="Pedidos Atendidos" fx:id="colunaPedidosAtendidosFuncionario"/>
+                            </columns>
+                        </TableView>
+                        <PieChart fx:id="graficoDesempenhoFuncionarios" title="Desempenho dos Funcionários"/>
+                    </VBox>
+                </Tab>
+
+                <!-- Tab for Orders -->
+                <Tab text="Pedidos">
+                    <VBox spacing="10" padding="10">
+                        <TableView fx:id="tablePedidos">
+                            <columns>
+                                <TableColumn text="ID Pedido" fx:id="colunaIdPedido"/>
+                                <TableColumn text="Cliente" fx:id="colunaClientePedido"/>
+                                <TableColumn text="Status" fx:id="colunaStatusPedido"/>
+                                <TableColumn text="Valor Total" fx:id="colunaValorTotalPedido"/>
+                            </columns>
+                        </TableView>
+                        <AreaChart fx:id="graficoPedidosMes" title="Pedidos por Mês">
+                            <xAxis>
+                                <CategoryAxis label="Mês"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Número de Pedidos"/>
+                            </yAxis>
+                        </AreaChart>
+                    </VBox>
+                </Tab>
+            </TabPane>
+        </center>
+    </BorderPane>
+

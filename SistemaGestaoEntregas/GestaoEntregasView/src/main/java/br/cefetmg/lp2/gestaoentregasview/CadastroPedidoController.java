@@ -2,9 +2,15 @@ package br.cefetmg.lp2.gestaoentregasview;
 
 import br.cefetmg.lp2.gestaoentregascontroller.*;
 import br.cefetmg.lp2.gestaoentregasentidades.*;
-import java.util.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.converter.DoubleStringConverter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class CadastroPedidoController {
 
@@ -18,22 +24,19 @@ public class CadastroPedidoController {
     private ComboBox<String> ComboBoxStatus;
 
     @FXML
+    private ComboBox<String> ComboBoxAtendente;
+
+    @FXML
     private Label LabelValorTotal;
 
     @FXML
     private Button BotaoCadastrarItemPedido;
 
     @FXML
-    private TableColumn<ItemPedido, String> ColunaProdutosPedidos;
-
-    @FXML
-    private TableColumn<ItemPedido, Double> ColunaValorUnitarioPedido;
-
-    @FXML
     private ComboBox<String> ComboBoxProdutosPedido;
 
     @FXML
-    private TableView<ItemPedido> TabelaProdutosPedido;
+    private ListView<String> TabelaProdutosPedido;
 
     @FXML
     private TextField TextValorProdutolPedido;
@@ -53,13 +56,11 @@ public class CadastroPedidoController {
     @FXML
     private void initialize() {
         carregaProdutos();
-        /*carregaItensPedidos();*/
         carregaClientes();
         ComboBoxStatus.getItems().addAll("Em Preparação", "Saiu para entrega", "Entregue");
     }
 
     public void salvarItemPedido() {
-
         Produto produto = produtoController.pesquisarNome(ComboBoxProdutosPedido.getValue());
         Double valorUnitario = Double.valueOf(TextValorProdutolPedido.getText());
         Double quantidadeProduto = Double.valueOf(TextQntProdutolPedido.getText());
@@ -67,19 +68,24 @@ public class CadastroPedidoController {
         ItemPedido itemPedido = new ItemPedido(valorUnitario, quantidadeProduto, pedido, produto);
 
         itemController.cadastrar(itemPedido);
+
+        adicionarItemALista(produto, valorUnitario, quantidadeProduto);
+        valorTotal += valorUnitario * quantidadeProduto;
+        LabelValorTotal.setText(String.format("R$ %.2f", valorTotal));
+
+        TextValorProdutolPedido.clear();
+        TextQntProdutolPedido.clear();
     }
 
     void carregaProdutos() {
-        List<Produto> lista = new ArrayList<>();
-        lista = produtoController.listar();
+        List<Produto> lista = produtoController.listar();
         for (Produto produto : lista) {
             ComboBoxProdutosPedido.getItems().add(produto.getNome());
         }
     }
 
     void carregaClientes() {
-        List<Cliente> lista = new ArrayList<>();
-        lista = clienteController.listar();
+        List<Cliente> lista = clienteController.listar();
         for (Cliente cliente : lista) {
             ComboBoxCliente.getItems().add(cliente.getNome());
         }
@@ -95,27 +101,31 @@ public class CadastroPedidoController {
         Pedido pedido = new Pedido((java.sql.Date) dataHoraAtual, status, valor, cliente, listaItens);
 
         pedidoController.cadastrar(pedido);
+
+        TabelaProdutosPedido.getItems().clear();
+        LabelValorTotal.setText("R$ 0.00");
+
+        ComboBoxProdutosPedido.getSelectionModel().clearSelection();
+        ComboBoxCliente.getSelectionModel().clearSelection();
+        ComboBoxStatus.getSelectionModel().clearSelection();
     }
 
     Double calculaValorTotal() {
-        List<ItemPedido> listaItens = itemController.listar();
-        for (ItemPedido itemPedido : listaItens) {
-            valorTotal += itemPedido.getValorUnitario();
+        Double total = 0.0;
+        List<String> items = TabelaProdutosPedido.getItems();
+        for (String item : items) {
+            String[] parts = item.split(" - ");
+            String[] valueQuantity = parts[1].split(" x ");
+            Double valorUnitario = Double.valueOf(valueQuantity[0].replace("R$", "").trim());
+            Double quantidade = Double.valueOf(valueQuantity[1].trim());
+            total += valorUnitario * quantidade;
         }
-        return valorTotal;
-
+        return total;
     }
 
-/*
- * void carregaItensPedidos() { List<ItemPedido> listaItens =
- * itemController.listar(); ObservableList<ItemPedido> observableListaItens =
- * FXCollections.observableArrayList(listaItens);
- *
- * ColunaProdutosPedidos.setCellValueFactory(cellData -> new
- * SimpleStringProperty(cellData.getValue().getProduto().getNome());
- * ColunaValorUnitarioPedido.setCellValueFactory(cellData -> new
- * SimpleObjectProperty<>(cellData.getValue().getValorUnitario()));
- *
- * TabelaProdutosPedido.setItems(observableListaItens);}
- */
+    private void adicionarItemALista(Produto produto, Double valorUnitario, Double quantidade) {
+        String itemTexto = String.format("%s - R$ %.2f x %.0f", produto.getNome(), valorUnitario, quantidade);
+        TabelaProdutosPedido.getItems().add(itemTexto);
+    }
 }
+
