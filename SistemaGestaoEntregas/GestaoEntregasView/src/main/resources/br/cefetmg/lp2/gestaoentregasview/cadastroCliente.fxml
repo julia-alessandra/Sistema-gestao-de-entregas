@@ -5,82 +5,98 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox id="hboxRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" stylesheets="@../../../../styles/tela.css" prefWidth="650.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.cefetmg.lp2.gestaoentregasview.CadastroClienteController">
-    <children>
-        <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0">
-            <children>
-                <!-- Imagem de Fundo -->
-                <ImageView fitHeight="400.0" fitWidth="650.0" pickOnBounds="true" preserveRatio="false">
-                    <image>
-                        <Image url="@../../../../images/fundo.png" /> <!-- Substitua pelo caminho correto da sua imagem -->
-                    </image>
-                </ImageView>
-
-                <!-- Botão "Voltar" -->
-                <Button id="buttonVoltar" fx:id="buttonVoltar" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltar" prefHeight="15.0" prefWidth="32.0" style="-fx-background-color: 0;" stylesheets="@../../../../styles/botao.css">
-                    <graphic>
-                        <ImageView fitHeight="70.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                              <Image url="@../../../../images/iconeSairBranco.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-
-                <!-- Texto e outros componentes -->
-                <Text layoutX="45.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar cliente" fill="WHITE">
-                    <font>
-                        <Font name="Cambria Math" size="30.0" />
-                    </font>
-                </Text>
-                <Text layoutX="23.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" fill="WHITE">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-                <TextField fx:id="TextNomeCliente" layoutX="92.0" layoutY="75.0" />
-                <Text layoutX="21.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:" fill="WHITE">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-                <Text layoutX="26.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empresa:" fill="WHITE">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-                <Text layoutX="30.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF:" fill="WHITE">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-                <TextField fx:id="TextTelefoneCliente" layoutX="92.0" layoutY="130.0" />
-                <TextField fx:id="TextCPFCliente" layoutX="92.0" layoutY="225.0" />
-                <Text layoutX="27.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logradouro:" fill="WHITE">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-                <TextField fx:id="TextLogradouroCliente" layoutX="126.0" layoutY="275.0" />
-                <Text layoutX="311.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bairro:" fill="WHITE">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-                <TextField fx:id="TextBairroCliente" layoutX="373.0" layoutY="275.0" />
-                <Button fx:id="ButtonCadastrarCliente" layoutX="181.0" layoutY="344.0" mnemonicParsing="false" onAction="#cadastroCliente" text="Cadastrar" stylesheets="@../../../../styles/botao.css">
-                    <font>
+<HBox id="fundoTela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="mainFxmlClass" stylesheets="@../../../../styles/tela.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.cefetmg.lp2.gestaoentregasview.CadastroClienteController">
+   <children>
+      <VBox>
+         <children>
+            <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#23142e" height="505.0" layoutX="414.0" layoutY="148.0" stroke="TRANSPARENT" strokeType="INSIDE" width="468.0" />
+                  <Text fill="WHITE" layoutX="422.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar cliente">
+                     <font>
+                        <Font name="Cambria Math" size="60.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="525.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="TextNomeCliente" layoutX="627.0" layoutY="205.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Text fill="WHITE" layoutX="495.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="495.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empresa:">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="559.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF:">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="TextTelefoneCliente" layoutX="627.0" layoutY="258.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="TextCPFCliente" layoutX="627.0" layoutY="369.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Text fill="WHITE" layoutX="454.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logradouro:">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="TextLogradouroCliente" layoutX="627.0" layoutY="425.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Text fill="WHITE" layoutX="527.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bairro:">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="TextBairroCliente" layoutX="627.0" layoutY="487.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Button id="buttonCadastrar" fx:id="ButtonCadastrarCliente" layoutX="592.0" layoutY="580.0" mnemonicParsing="false" onAction="#cadastroCliente" stylesheets="@../../../../styles/botao.css" text="Cadastrar">
+                     <font>
                         <Font size="20.0" />
-                    </font>
-                </Button>
-                
-                <ComboBox fx:id="ComboBoxEmpresas" layoutX="92.0" layoutY="177.0" prefWidth="150.0" />
-            </children>
-        </AnchorPane>
-    </children>
+                     </font>
+                  </Button>
+                  <ComboBox fx:id="ComboBoxEmpresas" layoutX="627.0" layoutY="315.0" prefHeight="26.0" prefWidth="199.0" />
+                  <Button id="buttonVoltar" fx:id="buttonVoltar" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltar" prefHeight="15.0" prefWidth="32.0" style="-fx-background-color: 0;" stylesheets="@../../../../styles/botao.css">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/iconeVoltarBranco.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
 </HBox>

@@ -7,10 +7,10 @@
     -fx-cursor: hand;
 }
 
-#buttonEntrarLogin, #buttonAtualizar {
+#buttonEntrarLogin, #buttonAtualizar, #buttonCadastrar, #buttonCriarEmpresa, #buttonAdicionar, #buttonSalvar {
     -fx-background-color: #8a9efb;
 }
 
-#buttonEntrarLogin:hover, #buttonAtualizar:hover {
+#buttonEntrarLogin:hover, #buttonAtualizar:hover, #buttonCadastrar:hover, #buttonCriarEmpresa:hover, #buttonAdicionar:hover, #buttonSalvar:hover {
     -fx-background-color: #7485d4;
 }

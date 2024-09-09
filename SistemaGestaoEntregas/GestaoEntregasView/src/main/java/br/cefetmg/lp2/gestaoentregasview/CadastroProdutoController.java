@@ -2,6 +2,7 @@ package br.cefetmg.lp2.gestaoentregasview;
 
 import br.cefetmg.lp2.gestaoentregascontroller.ProdutoController;
 import br.cefetmg.lp2.gestaoentregasentidades.Produto;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.*;
@@ -13,6 +14,9 @@ public class CadastroProdutoController implements Initializable {
     @FXML
     private Button ButtonCadastrarProduto;
 
+    @FXML
+    private Button buttonVoltar;
+    
     @FXML
     private TextArea TextLocalizacaoProduto;
 
@@ -28,6 +32,11 @@ public class CadastroProdutoController implements Initializable {
         Produto produto = new Produto(nome, localizacao);
         
         controller.cadastrar(produto);
+    }
+    
+    @FXML
+    void voltar() throws IOException {
+        App.setRoot("gerenciarProdutos");
     }
 
     @Override

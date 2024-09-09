@@ -12,6 +12,9 @@ public class CadastroEmpresaController {
     private Button ButtonCriarEmpresa;
 
     @FXML
+    private Button buttonVoltar;
+    
+    @FXML
     private TextField TextCNPJEmpresa;
 
     @FXML

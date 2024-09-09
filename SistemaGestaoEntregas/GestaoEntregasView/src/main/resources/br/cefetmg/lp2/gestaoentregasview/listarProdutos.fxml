@@ -17,7 +17,7 @@
             <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass">
                <children>
                   <!-- Título da tela -->
-                  <Label layoutX="340.0" layoutY="49.0" text="Produtos" textFill="WHITE">
+                  <Label layoutX="522.0" layoutY="49.0" text="Produtos" textFill="WHITE">
                      <font>
                         <Font name="Cambria Math" size="60.0" />
                      </font>
@@ -35,7 +35,7 @@
                   </Button>
 
                   <!-- ListView para exibir a lista de funcionários -->
-                  <ListView fx:id="listViewProdutos" layoutX="300.0" layoutY="450.0" prefHeight="200.0" prefWidth="680.0" />
+                  <ListView fx:id="listViewProdutos" layoutX="300.0" layoutY="260.0" prefHeight="200.0" prefWidth="680.0" />
                </children>
             </AnchorPane>
          </children>

@@ -1,10 +1,14 @@
 package br.cefetmg.lp2.gestaoentregasview;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.*;
 
 public class EditarEmpresaController {
+    
+    @FXML
+    private Button buttonVoltar;
     
     @FXML
     private TableColumn<?, ?> ColunaCPFFuncionarioEmpresa;
@@ -26,4 +30,9 @@ public class EditarEmpresaController {
 
     @FXML
     private Text TextNomeEmpresa;
+    
+    @FXML
+    void voltar() throws IOException {
+        App.setRoot("gerenciarEmpresa");
+    }
 }
