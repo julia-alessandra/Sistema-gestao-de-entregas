@@ -1,7 +1,6 @@
 package br.cefetmg.lp2.gestaoentregasview;
 
 import br.cefetmg.lp2.gestaoentregasentidades.Pedido;
-import br.cefetmg.lp2.gestaoentregasentidades.StatusPedido;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,7 +38,7 @@ public class ListarPedidosController implements Initializable {
     private TableColumn<Pedido, String> colQuantidade;
 
     @FXML
-    private TableColumn<StatusPedido, String> colStatus;
+    private TableColumn<String, String> colStatus;
 
     @FXML
     private TableColumn<Pedido, String> colValorTotal;

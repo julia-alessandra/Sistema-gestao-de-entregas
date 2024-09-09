@@ -2,6 +2,7 @@ package br.cefetmg.lp2.gestaoentregasview;
 
 import br.cefetmg.lp2.gestaoentregascontroller.*;
 import br.cefetmg.lp2.gestaoentregasentidades.*;
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.*;
 import javafx.fxml.*;
@@ -25,6 +26,9 @@ public class CadastroFuncionarioController implements Initializable {
     private TextField textTelefoneFuncionario;
 
     @FXML
+    private TextField textCpfFuncionario;
+
+    @FXML
     private ComboBox<String> ComboBoxCargos;
 
     private EmpresaController empresaController = new EmpresaController();
@@ -32,10 +36,10 @@ public class CadastroFuncionarioController implements Initializable {
     private PerfilController perfilController = new PerfilController();
 
     public void cadastrarFuncionario() {
-
         String nome = textNomeFuncionario.getText();
         String telefone = textTelefoneFuncionario.getText();
         String senha = textSenhaFuncionario.getText();
+        String cpf = textCpfFuncionario.getText();
         String cargos = ComboBoxCargos.getValue();
         Empresa empresa = empresaController.separaTextoRetornaEmpresa(ComboBoxEmpresas.getValue());
 
@@ -48,18 +52,18 @@ public class CadastroFuncionarioController implements Initializable {
             tipoPerfil = TipoPerfil.ENTREGADOR;
         }
 
-        Funcionario funcionario = new Funcionario(nome, telefone, senha, empresa);
+        Funcionario funcionario = new Funcionario(nome, telefone, cpf, senha, empresa);
         Perfil perfil = new Perfil(tipoPerfil, funcionario);
         funcionario.setPerfil(perfil);
-        
-        
-        funcionarioController.inserirBD(funcionario);
-        perfilController.inserirBD(perfil);
+
+        funcionarioController.cadastrar(funcionario);
+        perfilController.cadastrar(perfil);
+        System.out.println("controller ok");
     }
 
     public void carregaNomes() {
         List<Empresa> lista = new ArrayList<>();
-        lista = empresaController.getEmpresa();
+        lista = empresaController.listar();
         for (Empresa empresa : lista) {
             ComboBoxEmpresas.getItems().add(empresa.getId() + " - " + empresa.getNome());
         }

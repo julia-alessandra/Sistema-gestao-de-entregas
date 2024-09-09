@@ -6,15 +6,34 @@ import java.util.List;
 
 public class EmpresaController {
 
-    private EmpresaDAO daoEmpresa = new EmpresaDAO();
-
-    public void inserirBD(Empresa empresa){
-        daoEmpresa.inserir(empresa);
+    private EmpresaDAO dao;
+    
+    public EmpresaController() {
+        dao = new EmpresaDAO();
     }
     
-    public List<Empresa> getEmpresa() {
-        return daoEmpresa.retornarEmpresas();
+    public boolean cadastrar(Empresa x) {
+        dao.inserir(x);
+        return true;
     }
+    
+    public boolean remover(int id) {
+        dao.remover(id);
+        return true;
+    }
+  
+    public List<Empresa> listar() {
+        return dao.listarTodos();
+    }
+    
+    
+    public List<Empresa> pesquisarNome(String nome) {
+        return dao.pesquisarNome(nome);
+    }
+    
+    public Empresa selecionar(int id) {
+        return dao.selecionar(id);
+    }  
 
     public Empresa separaTextoRetornaEmpresa(String texto) {
         int id;
@@ -22,14 +41,10 @@ public class EmpresaController {
         id = Integer.parseInt(partes[0]);
 
         Empresa empresaSelecionada = new Empresa();
-        empresaSelecionada = daoEmpresa.pesquisaId(id);
+        empresaSelecionada = dao.pesquisaId(id);
 
         return empresaSelecionada;
 
     }
     
-    public void adicionaFuncionario(int idEmpresa, Funcionario funcionario){
-        daoEmpresa.adicionarFuncionario(idEmpresa, funcionario);
-    }
 }
-
