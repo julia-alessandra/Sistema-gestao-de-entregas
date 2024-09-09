@@ -1,11 +1,12 @@
 package br.cefetmg.lp2.gestaoentregasentidades;
 
 import br.cefetmg.lp2.gestaoentregasentidades.*;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.*;
 
 @Entity
-public class Perfil {
+public class Perfil implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

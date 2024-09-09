@@ -1,11 +1,12 @@
 package br.cefetmg.lp2.gestaoentregasentidades;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
 @Table
-public class Funcionario {
+public class Funcionario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
