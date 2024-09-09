@@ -50,6 +50,7 @@ public class CadastroPedidoController {
     ClienteController clienteController = new ClienteController();
     ProdutoController produtoController = new ProdutoController();
     ItemPedidoController itemController = new ItemPedidoController();
+    FuncionarioController funcionarioController = new FuncionarioController();
 
     Pedido pedido = new Pedido();
 
@@ -60,27 +61,34 @@ public class CadastroPedidoController {
         ComboBoxStatus.getItems().addAll("Em Preparação", "Saiu para entrega", "Entregue");
     }
 
-    public void salvarItemPedido() {
-        Produto produto = produtoController.pesquisarNome(ComboBoxProdutosPedido.getValue());
-        Double valorUnitario = Double.valueOf(TextValorProdutolPedido.getText());
-        Double quantidadeProduto = Double.valueOf(TextQntProdutolPedido.getText());
+public void salvarItemPedido() {
+    Produto produto = produtoController.pesquisarNome(ComboBoxProdutosPedido.getValue());
+    Double valorUnitario = Double.valueOf(TextValorProdutolPedido.getText().replace(",", "."));
+    Double quantidadeProduto = Double.valueOf(TextQntProdutolPedido.getText().replace(",", "."));
 
-        ItemPedido itemPedido = new ItemPedido(valorUnitario, quantidadeProduto, pedido, produto);
+    ItemPedido itemPedido = new ItemPedido(valorUnitario, quantidadeProduto, pedido, produto);
 
-        itemController.cadastrar(itemPedido);
+    itemController.cadastrar(itemPedido);
 
-        adicionarItemALista(produto, valorUnitario, quantidadeProduto);
-        valorTotal += valorUnitario * quantidadeProduto;
-        LabelValorTotal.setText(String.format("R$ %.2f", valorTotal));
+    adicionarItemALista(produto, valorUnitario, quantidadeProduto);
+    valorTotal += valorUnitario * quantidadeProduto;
+    LabelValorTotal.setText(String.format("R$ %.2f", valorTotal));
 
-        TextValorProdutolPedido.clear();
-        TextQntProdutolPedido.clear();
-    }
+    TextValorProdutolPedido.clear();
+    TextQntProdutolPedido.clear();
+}
 
     void carregaProdutos() {
         List<Produto> lista = produtoController.listar();
         for (Produto produto : lista) {
             ComboBoxProdutosPedido.getItems().add(produto.getNome());
+        }
+    }
+    
+        void carregaAtendente() {
+        List<Funcionario> lista = funcionarioController.listar();
+        for (Funcionario funcionario : lista) {
+            ComboBoxProdutosPedido.getItems().add(funcionario.getNome());
         }
     }
 
@@ -94,11 +102,13 @@ public class CadastroPedidoController {
     public void salvarPedido() {
         List<ItemPedido> listaItens = itemController.listar();
         Date dataHoraAtual = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(dataHoraAtual.getTime());
+
         String status = ComboBoxStatus.getValue();
         Double valor = calculaValorTotal();
         Cliente cliente = clienteController.pesquisarNome(ComboBoxCliente.getValue());
 
-        Pedido pedido = new Pedido((java.sql.Date) dataHoraAtual, status, valor, cliente, listaItens);
+        Pedido pedido = new Pedido(sqlDate, status, valor, cliente, listaItens);
 
         pedidoController.cadastrar(pedido);
 
@@ -109,19 +119,21 @@ public class CadastroPedidoController {
         ComboBoxCliente.getSelectionModel().clearSelection();
         ComboBoxStatus.getSelectionModel().clearSelection();
     }
+    
 
-    Double calculaValorTotal() {
-        Double total = 0.0;
-        List<String> items = TabelaProdutosPedido.getItems();
-        for (String item : items) {
-            String[] parts = item.split(" - ");
-            String[] valueQuantity = parts[1].split(" x ");
-            Double valorUnitario = Double.valueOf(valueQuantity[0].replace("R$", "").trim());
-            Double quantidade = Double.valueOf(valueQuantity[1].trim());
-            total += valorUnitario * quantidade;
-        }
-        return total;
+
+Double calculaValorTotal() {
+    Double total = 0.0;
+    List<String> items = TabelaProdutosPedido.getItems();
+    for (String item : items) {
+        String[] parts = item.split(" - ");
+        String[] valueQuantity = parts[1].split(" x ");
+        Double valorUnitario = Double.valueOf(valueQuantity[0].replace("R$", "").trim().replace(",", "."));
+        Double quantidade = Double.valueOf(valueQuantity[1].trim().replace(",", "."));
+        total += valorUnitario * quantidade;
     }
+    return total;
+}
 
     private void adicionarItemALista(Produto produto, Double valorUnitario, Double quantidade) {
         String itemTexto = String.format("%s - R$ %.2f x %.0f", produto.getNome(), valorUnitario, quantidade);

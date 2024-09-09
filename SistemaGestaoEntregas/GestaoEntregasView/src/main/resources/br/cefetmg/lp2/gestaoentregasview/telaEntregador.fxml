@@ -20,26 +20,7 @@
                         <Font name="Cambria Math" size="60.0" />
                      </font>
                   </Text>
-                  <Button id="buttonEmpresa" fx:id="buttonEmpresa" layoutX="538.0" layoutY="273.0" mnemonicParsing="false" onAction="#abrirGerenciarEmpresa" prefHeight="68.0" prefWidth="224.0" stylesheets="@../../../../styles/botao.css" text="Empresa">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Button>
-                  <Button id="buttonFuncionarios" fx:id="buttonFuncionarios" layoutX="538.0" layoutY="188.0" mnemonicParsing="false" onAction="#abrirGerenciarFuncionarios" prefHeight="68.0" prefWidth="224.0" stylesheets="@../../../../styles/botao.css" text="Funcionários">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Button>
-                  <Button id="buttonClientes" fx:id="buttonClientes" layoutX="538.0" layoutY="528.0" mnemonicParsing="false" onAction="#abrirGerenciarClientes" prefHeight="68.0" prefWidth="224.0" stylesheets="@../../../../styles/botao.css" text="Clientes">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Button>
-                  <Button id="buttonProdutos" fx:id="buttonProdutos" layoutX="538.0" layoutY="356.0" mnemonicParsing="false" onAction="#abrirGerenciarProdutos" prefHeight="58.0" prefWidth="224.0" stylesheets="@../../../../styles/botao.css" text="Produtos">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Button>
+
                   <Button id="buttonPedidos" fx:id="buttonPedidos" layoutX="538.0" layoutY="442.0" mnemonicParsing="false" onAction="#abrirGerenciarPedidos" prefHeight="68.0" prefWidth="224.0" stylesheets="@../../../../styles/botao.css" text="Pedidos">
                      <font>
                         <Font size="32.0" />

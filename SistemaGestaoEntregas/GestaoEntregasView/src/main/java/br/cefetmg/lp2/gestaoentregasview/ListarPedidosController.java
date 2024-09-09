@@ -1,67 +1,49 @@
 package br.cefetmg.lp2.gestaoentregasview;
 
+import br.cefetmg.lp2.gestaoentregascontroller.PedidoController;
 import br.cefetmg.lp2.gestaoentregasentidades.Pedido;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ListView;
 
-public class ListarPedidosController implements Initializable {
+import java.util.List;
 
-    @FXML
-    private Button buttonAtualizar;
+public class ListarPedidosController {
 
     @FXML
-    private Button buttonVoltar;
+    private ListView<String> listViewPedidos;
+
+    private PedidoController pedidoController = new PedidoController();
 
     @FXML
-    private TableColumn<Pedido, String> colCPFCliente;
-
-    @FXML
-    private TableColumn<Pedido, String> colEndereco;
-
-    @FXML
-    private TableColumn<Pedido, String> colEntregador;
-
-    @FXML
-    private TableColumn<Pedido, String> colFormaPagamento;
-
-    @FXML
-    private TableColumn<Pedido, String> colObservacoes;
-
-    @FXML
-    private TableColumn<Pedido, String> colProdutos;
-
-    @FXML
-    private TableColumn<Pedido, String> colQuantidade;
-
-    @FXML
-    private TableColumn<String, String> colStatus;
-
-    @FXML
-    private TableColumn<Pedido, String> colValorTotal;
-
-    @FXML
-    private TableView<Pedido> tabelaPedidos;
-
-    @FXML
-    void atualizarDados() {
-        
+    private void initialize() {
+        listarPedidos();
     }
 
     @FXML
     void voltar() throws IOException {
-        App.setRoot("gerenciarPedidos");
+        App.setRoot("TelaInicialAdministrador");
     }
-    
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
+    private void listarPedidos() {
+        List<Pedido> pedidos = pedidoController.listar();
+        ObservableList<String> pedidosTexto = FXCollections.observableArrayList();
+
+        for (Pedido pedido : pedidos) {
+            String itemTexto = String.format("Data: %s -  valor Total: %.2f  - Cliente: %s",
+                    pedido.getStatus(),
+                    pedido.getValorTotal(),
+                    pedido.getCliente().getNome());
+            pedidosTexto.add(itemTexto);
+        }
+
+        listViewPedidos.setItems(pedidosTexto);
+    }
+
+    @FXML
+    public void salvarItemPedido() {
+        listarPedidos();
+    }
 }

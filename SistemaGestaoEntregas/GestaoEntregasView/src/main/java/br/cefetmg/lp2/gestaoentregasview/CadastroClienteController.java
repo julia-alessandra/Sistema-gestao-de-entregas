@@ -4,6 +4,7 @@ import br.cefetmg.lp2.gestaoentregascontroller.ClienteController;
 import br.cefetmg.lp2.gestaoentregascontroller.EmpresaController;
 import br.cefetmg.lp2.gestaoentregasentidades.Cliente;
 import br.cefetmg.lp2.gestaoentregasentidades.Empresa;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 
-public class CadastroClienteController implements Initializable{
+public class CadastroClienteController implements Initializable {
 
     @FXML
     private Button ButtonCadastrarCliente;
@@ -44,9 +45,9 @@ public class CadastroClienteController implements Initializable{
         String bairro = TextBairroCliente.getText();
         String telefone = TextTelefoneCliente.getText();
         Empresa empresa = empresaController.separaTextoRetornaEmpresa(ComboBoxEmpresas.getValue());
-        
+
         Cliente cliente = new Cliente(nome, logradouro, bairro, telefone, cpf, empresa);
-        
+
         clienteController.cadastrar(cliente);
     }
 
@@ -60,5 +61,11 @@ public class CadastroClienteController implements Initializable{
 
     public void initialize(URL url, ResourceBundle rb) {
         carregaNomes();
+        
+    }
+
+    @FXML
+    void voltar() throws IOException {
+        App.setRoot("TelaInicialAdministrador");
     }
 }

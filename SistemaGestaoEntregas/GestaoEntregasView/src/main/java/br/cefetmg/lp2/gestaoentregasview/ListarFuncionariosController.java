@@ -1,49 +1,50 @@
 package br.cefetmg.lp2.gestaoentregasview;
 
+import br.cefetmg.lp2.gestaoentregascontroller.FuncionarioController;
 import br.cefetmg.lp2.gestaoentregasentidades.Funcionario;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ListView;
 
-public class ListarFuncionariosController implements Initializable {
+import java.util.List;
 
-    @FXML
-    private Button buttonAtualizar;
+public class ListarFuncionariosController {
 
     @FXML
-    private Button buttonVoltar;
+    private ListView<String> listViewFuncionarios;
+
+    private FuncionarioController funcionarioController = new FuncionarioController();
 
     @FXML
-    private TableColumn<Funcionario, String> colCargo;
-
-    @FXML
-    private TableColumn<Funcionario, String> colNome;
-
-    @FXML
-    private TableColumn<Funcionario, String> colTelefone;
-
-    @FXML
-    private TableView<Funcionario> tabelaFuncionarios;
-
-    @FXML
-    void atualizarDados() {
-
+    private void initialize() {
+        listarFuncionarios();
     }
-
+    
+    
     @FXML
     void voltar() throws IOException {
-        App.setRoot("gerenciarFuncionarios");
+        App.setRoot("TelaInicialAdministrador");
     }
-    
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
+    private void listarFuncionarios() {
+        List<Funcionario> funcionarios = funcionarioController.listar();
+        ObservableList<String> funcionariosTexto = FXCollections.observableArrayList();
+
+        for (Funcionario funcionario : funcionarios) {
+            String itemTexto = String.format("Nome: %s (  CPF: %s ) - Empresa: %s",
+                    funcionario.getNome(), 
+                    funcionario.getCpf(), 
+                    funcionario.getEmpresa().getNome());
+            funcionariosTexto.add(itemTexto);
+        }
+
+        listViewFuncionarios.setItems(funcionariosTexto);
+    }
+
+    @FXML
+    public void salvarItemPedido() {
+        listarFuncionarios();
+    }
 }

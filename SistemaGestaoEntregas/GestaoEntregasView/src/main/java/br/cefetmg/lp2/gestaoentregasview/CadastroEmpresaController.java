@@ -20,20 +20,24 @@ public class CadastroEmpresaController {
     @FXML
     private TextField TextPorcentagemEntregadorEmpresa;
 
-        private EmpresaController empresaController = new EmpresaController();
+    private EmpresaController empresaController = new EmpresaController();
 
-    
     @FXML
-    public void cadastrarEmpresa()  throws IOException{
+    public void cadastrarEmpresa() throws IOException {
         String nome = TextNomeEmpresa.getText();
         String CNPJ = TextCNPJEmpresa.getText();
         Double porcentagem = Double.parseDouble(TextPorcentagemEntregadorEmpresa.getText());
-        
+
         Empresa empresa = new Empresa(nome, CNPJ, porcentagem);
         empresaController.cadastrar(empresa);
-        
+
         App.setRoot("cadastroFuncionario");
 
     }
-   
+
+    @FXML
+    void voltar() throws IOException {
+        App.setRoot("telaInicial");
+    }
+
 }
