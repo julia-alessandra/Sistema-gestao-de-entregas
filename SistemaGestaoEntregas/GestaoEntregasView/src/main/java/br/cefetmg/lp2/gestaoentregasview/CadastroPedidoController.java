@@ -2,6 +2,7 @@ package br.cefetmg.lp2.gestaoentregasview;
 
 import br.cefetmg.lp2.gestaoentregascontroller.*;
 import br.cefetmg.lp2.gestaoentregasentidades.*;
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +18,9 @@ public class CadastroPedidoController {
     @FXML
     private Button BotaoCadastrarPedido;
 
+    @FXML
+    private Button buttonVoltar;
+    
     @FXML
     private ComboBox<String> ComboBoxCliente;
 
@@ -138,6 +142,11 @@ Double calculaValorTotal() {
     private void adicionarItemALista(Produto produto, Double valorUnitario, Double quantidade) {
         String itemTexto = String.format("%s - R$ %.2f x %.0f", produto.getNome(), valorUnitario, quantidade);
         TabelaProdutosPedido.getItems().add(itemTexto);
+    }
+    
+    @FXML
+    void voltar() throws IOException {
+        App.setRoot("gerenciarPedidos");
     }
 }
 

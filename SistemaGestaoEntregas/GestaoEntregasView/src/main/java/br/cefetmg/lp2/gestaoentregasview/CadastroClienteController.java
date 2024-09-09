@@ -16,6 +16,9 @@ public class CadastroClienteController implements Initializable {
 
     @FXML
     private Button ButtonCadastrarCliente;
+    
+    @FXML
+    private Button buttonVoltar;
 
     @FXML
     private TextField TextBairroCliente;
@@ -66,6 +69,6 @@ public class CadastroClienteController implements Initializable {
 
     @FXML
     void voltar() throws IOException {
-        App.setRoot("TelaInicialAdministrador");
+        App.setRoot("gerenciarClientes");
     }
 }

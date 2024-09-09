@@ -3,6 +3,7 @@ package br.cefetmg.lp2.gestaoentregasview;
 import br.cefetmg.lp2.gestaoentregascontroller.*;
 import br.cefetmg.lp2.gestaoentregasentidades.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import javafx.fxml.*;
@@ -12,6 +13,9 @@ public class CadastroFuncionarioController implements Initializable {
 
     @FXML
     private Button ButtonCadastrarFuncionario;
+    
+    @FXML
+    private Button buttonVoltar;
 
     @FXML
     private ComboBox<String> ComboBoxEmpresas;
@@ -67,6 +71,11 @@ public class CadastroFuncionarioController implements Initializable {
         for (Empresa empresa : lista) {
             ComboBoxEmpresas.getItems().add(empresa.getId() + " - " + empresa.getNome());
         }
+    }
+    
+    @FXML
+    void voltar() throws IOException {
+        App.setRoot("gerenciarFuncionarios");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package br.cefetmg.lp2.gestaoentregasentidades;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 import java.sql.Date;
@@ -8,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table
-public class Pedido {
+public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
