@@ -40,7 +40,7 @@ public class ItemPedidoDAO {
     }
 
     public List<ItemPedido> listarTodos() {
-        return em.createQuery("SELECT c FROM itemPedido c", ItemPedido.class).getResultList();
+        return em.createQuery("SELECT c FROM ItemPedido c", ItemPedido.class).getResultList();
     }
     
     public ItemPedido selecionar(int id) {

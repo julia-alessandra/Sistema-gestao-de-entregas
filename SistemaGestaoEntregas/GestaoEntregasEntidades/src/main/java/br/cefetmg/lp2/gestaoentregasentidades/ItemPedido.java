@@ -13,8 +13,8 @@ public class ItemPedido {
     private Double valorUnitario;
     private Double quantidade;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idPedido")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idpedido")
     private Pedido pedido;
 
     @ManyToOne(fetch = FetchType.EAGER)
