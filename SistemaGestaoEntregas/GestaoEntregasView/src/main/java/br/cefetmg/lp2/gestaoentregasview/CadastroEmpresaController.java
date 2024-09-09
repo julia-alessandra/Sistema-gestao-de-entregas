@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class CadastroEmpresaController {
-    
 
     @FXML
     private Button ButtonCriarEmpresa;

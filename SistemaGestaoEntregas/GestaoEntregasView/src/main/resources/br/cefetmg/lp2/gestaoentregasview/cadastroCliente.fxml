@@ -49,7 +49,7 @@
          </font>
       </Text>
       <TextField fx:id="TextBairroCliente" layoutX="373.0" layoutY="275.0" />
-      <Button fx:id="ButtonCadastrarCliente" layoutX="181.0" layoutY="344.0" mnemonicParsing="false" text="Cadastrar" />
+      <Button fx:id="ButtonCadastrarCliente" layoutX="181.0" layoutY="344.0" mnemonicParsing="false" onAction="#cadastroCliente" text="Cadastrar" />
       <ComboBox fx:id="ComboBoxEmpresas" layoutX="92.0" layoutY="177.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

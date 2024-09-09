@@ -24,8 +24,8 @@ public class GerenciarEmpresaController implements Initializable {
     }
     
     @FXML
-    void emitirRelatorio() {
-
+    void emitirRelatorio() throws IOException {
+        App.setRoot("emitirRelatorio");
     }
     
     @FXML

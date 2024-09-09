@@ -20,7 +20,7 @@ public class Pedido {
     @JoinColumn(name = "idCliente")
     private Cliente cliente;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itensPedido;
 
     public Pedido(Date data, String status, Double valorTotal, Cliente cliente, List<ItemPedido> itensPedido) {

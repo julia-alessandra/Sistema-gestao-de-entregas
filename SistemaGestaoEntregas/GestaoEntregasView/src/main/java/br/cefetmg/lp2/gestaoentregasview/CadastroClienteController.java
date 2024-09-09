@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 
-public class CadastroClienteController {
+public class CadastroClienteController implements Initializable{
 
     @FXML
     private Button ButtonCadastrarCliente;
@@ -54,7 +54,7 @@ public class CadastroClienteController {
         List<Empresa> lista = new ArrayList<>();
         lista = empresaController.listar();
         for (Empresa empresa : lista) {
-            ComboBoxEmpresas.getItems().add(empresa.getNome());
+            ComboBoxEmpresas.getItems().add(empresa.getId() + " - " + empresa.getNome());
         }
     }
 
