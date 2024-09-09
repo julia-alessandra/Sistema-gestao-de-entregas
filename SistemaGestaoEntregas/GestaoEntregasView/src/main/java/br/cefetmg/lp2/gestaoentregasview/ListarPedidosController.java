@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -68,7 +69,8 @@ public class ListarPedidosController implements Initializable {
     
     @FXML
     void atualizarDados() {
-        
+        listaPedidos = pedidoController.atualizaDadosPedido(ultimoPedido, null);
+        tabelaPedidos.setItems(FXCollections.observableArrayList(listaPedidos));
     }
 
     @FXML
@@ -100,6 +102,7 @@ public class ListarPedidosController implements Initializable {
         colStatus.setCellValueFactory(
                 new PropertyValueFactory<>("status"));
         
-    }    
+        atualizarDados();
+     }    
     
 }
