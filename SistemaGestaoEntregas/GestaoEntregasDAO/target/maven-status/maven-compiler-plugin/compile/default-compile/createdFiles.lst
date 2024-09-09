@@ -3,4 +3,6 @@ br\cefetmg\lp2\gestaoentregasdao\GestaoEntregasDAO.class
 br\cefetmg\lp2\gestaoentregasdao\PerfilDAO.class
 br\cefetmg\lp2\gestaoentregasdao\FuncionarioDAO.class
 br\cefetmg\lp2\gestaoentregasdao\ProdutoDAO.class
+br\cefetmg\lp2\gestaoentregasdao\ItemPedidoDAO.class
 br\cefetmg\lp2\gestaoentregasdao\ClienteDAO.class
+br\cefetmg\lp2\gestaoentregasdao\PedidoDAO.class

@@ -8,141 +8,63 @@ import java.util.*;
 
 public class EmpresaDAO {
 
-    private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
+    private EntityManagerFactory emf;
+    private EntityManager em;
+
+    public EmpresaDAO() {
+        emf = Persistence.createEntityManagerFactory("persistence");
+        em = emf.createEntityManager();
+    }
 
     public void inserir(Empresa empresa) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(empresa);
-            entityManager.getTransaction().commit();
-            System.out.println("Empresa criada com sucesso!");
-        } catch (Exception ex) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            System.err.println("Erro ao criar empresa: " + ex.getMessage());
-        } finally {
-            entityManager.close();
-        }
+        em.getTransaction().begin();
+        em.persist(empresa);
+        em.getTransaction().commit();
     }
 
-    public void remover(int idEmpresa) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            Empresa empresa = entityManager.find(Empresa.class, idEmpresa);
-            if (empresa != null) {
-                entityManager.remove(empresa);
-                entityManager.getTransaction().commit();
-                System.out.println("Empresa excluída com sucesso!");
-            } else {
-                System.out.println("Não foi possível encontrar a empresa.");
-            }
-        } catch (Exception ex) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            System.err.println("Erro ao excluir a empresa: " + ex.getMessage());
-        } finally {
-            entityManager.close();
-        }
+    public Empresa ler(int id) {
+        return em.find(Empresa.class, id);
     }
 
-    public void listarTodos() {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            CriteriaQuery<Empresa> criteria = entityManager.getCriteriaBuilder().createQuery(Empresa.class);
-            criteria.select(criteria.from(Empresa.class));
-            List<Empresa> empresas = entityManager.createQuery(criteria).getResultList();
-            for (Empresa empresa : empresas) {
-                System.out.println("Id: " + empresa.getId() + "\nNome: " + empresa.getNome() + "\nLocalização: " + empresa.getCnpj());
-            }
-        } catch (Exception ex) {
-            System.err.println("Erro ao listar empresas: " + ex.getMessage());
-        } finally {
-            entityManager.close();
-        }
+    public void atualizar(Empresa empresa) {
+        em.getTransaction().begin();
+        em.merge(empresa);
+        em.getTransaction().commit();
     }
 
-    public Empresa pesquisaNome(String nomeEmpresa) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            Query query = entityManager.createQuery("FROM Empresa WHERE nome_empresa = :nome");
-            query.setParameter("nome", nomeEmpresa);
-            List<Empresa> pesquisa = query.getResultList();
-            return pesquisa.isEmpty() ? null : pesquisa.get(0);
-        } catch (Exception e) {
-            System.err.println("Erro na pesquisa por nome: " + e.getMessage());
-            return null;
-        } finally {
-            entityManager.close();
+    public void remover(int id) {
+        em.getTransaction().begin();
+        Empresa empresa = em.find(Empresa.class, id);
+        if (empresa != null) {
+            em.remove(empresa);
         }
+        em.getTransaction().commit();
     }
 
-    public List<Empresa> retornarEmpresas() {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            Query query = entityManager.createQuery("SELECT e FROM Empresa e", Empresa.class);
-            return query.getResultList();
-        } catch (Exception e) {
-            System.err.println("Erro ao retornar empresas: " + e.getMessage());
-            return List.of(); // Retorna uma lista vazia em caso de erro
-        } finally {
-            entityManager.close();
-        }
+    public List<Empresa> listarTodos() {
+        return em.createQuery("SELECT e FROM Empresa e", Empresa.class).getResultList();
+    }
+
+    public Empresa selecionar(int id) {
+        em.getTransaction().begin();
+        Empresa x = em.find(Empresa.class, id);
+        return x;
+    }
+
+    public List<Empresa> pesquisarNome(String nome) {
+        var cb = em.getCriteriaBuilder();
+        CriteriaQuery<Empresa> criteria = cb.createQuery(Empresa.class);
+        var root = criteria.from(Empresa.class);
+        criteria.select(root).where(cb.like(root.get("nome"), "%" + nome + "%"));
+        List<Empresa> lista = em.createQuery(criteria).getResultList();
+        return lista;
     }
 
     public Empresa pesquisaId(int idEmpresa) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            Query query = entityManager.createQuery("SELECT e FROM Empresa e WHERE e.id = :id");
-            query.setParameter("id", idEmpresa);
-            List<Empresa> pesquisa = query.getResultList();
-            return pesquisa.isEmpty() ? null : pesquisa.get(0);
-        } catch (Exception e) {
-            System.err.println("Erro na pesquisa por ID: " + e.getMessage());
-            return null;
-        } finally {
-            entityManager.close();
-        }
-    }
-    
-    public void adicionarFuncionario(int empresaId, Funcionario funcionario) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-
-            EmpresaDAO dao = null;
-            Empresa empresa = null;
-            empresa = dao.pesquisaId(empresaId);
-            if (empresa != null) {
-                List<Funcionario> funcionarios = empresa.getFuncionarios();
-                if (funcionarios == null) {
-                    funcionarios = new ArrayList<>();
-                    empresa.setFuncionarios(funcionarios);
-                }
-                funcionarios.add(funcionario);
-
-                entityManager.persist(funcionario);
-                entityManager.getTransaction().commit();
-                System.out.println("Funcionário adicionado com sucesso!");
-            } else {
-                System.out.println("Empresa não encontrada!");
-            }
-        } catch (Exception ex) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            System.err.println("Erro ao adicionar funcionário: " + ex.getMessage());
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public void close() {
-        if (entityManagerFactory.isOpen()) {
-            entityManagerFactory.close();
-        }
+        em.getTransaction().begin();
+        Query query = em.createQuery("SELECT e FROM Empresa e WHERE e.id = :id");
+        query.setParameter("id", idEmpresa);
+        List<Empresa> pesquisa = query.getResultList();
+        return pesquisa.isEmpty() ? null : pesquisa.get(0);
     }
 }

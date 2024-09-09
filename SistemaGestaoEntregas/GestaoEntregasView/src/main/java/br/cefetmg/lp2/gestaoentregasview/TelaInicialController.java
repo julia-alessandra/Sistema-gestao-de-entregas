@@ -15,7 +15,7 @@ public class TelaInicialController {
     private Button buttonEntrar;
 
     public void cadastrarNovaEmpresa() throws IOException {
-        App.setRoot("CadastrarEmpresa");
+        App.setRoot("cadastroEmpresa");
     }
     
     public void entrarNoSistema() throws IOException {

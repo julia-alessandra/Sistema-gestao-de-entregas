@@ -9,17 +9,21 @@ import java.util.List;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_produto")
     private int id;
 
-    @Column(name = "nome_produto")
     private String nome;
-    
-    @Column(name = "localizacao_produto")
     private String localizacao;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "produto")
     private List<ItemPedido> itemPedido;
+
+    public Produto(String nome, String localizacao) {
+        this.nome = nome;
+        this.localizacao = localizacao;
+    }
+
+    public Produto() {
+    }
 
     public void setId(int id) {
         this.id = id;

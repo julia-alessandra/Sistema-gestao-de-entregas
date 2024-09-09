@@ -6,84 +6,59 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 public class ClienteDAO {
+   private EntityManagerFactory emf;
+    private EntityManager em;
 
-    private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
-
-    public void inserir(Cliente cliente) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(cliente);
-            entityManager.getTransaction().commit();
-            System.out.println("Cliente criado com sucesso!");
-        } catch (Exception ex) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            System.err.println("Erro ao criar cliente: " + ex.getMessage());
-        } finally {
-            entityManager.close();
-        }
+    public ClienteDAO() {
+        emf = Persistence.createEntityManagerFactory("persistence");
+        em = emf.createEntityManager();
     }
 
-    public void remover(int idCliente) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            Cliente cliente = entityManager.find(Cliente.class, idCliente);
-            if (cliente != null) {
-                entityManager.remove(cliente);
-                entityManager.getTransaction().commit();
-                System.out.println("Cliente excluído com sucesso!");
-            } else {
-                System.out.println("Não foi possível encontrar o cliente.");
-            }
-        } catch (Exception ex) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            System.err.println("Erro ao excluir cliente: " + ex.getMessage());
-        } finally {
-            entityManager.close();
-        }
+    public void inserir(Cliente cliente){
+        em.getTransaction().begin();
+        em.persist(cliente);
+        em.getTransaction().commit();
     }
 
-    public void listarTodos() {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            CriteriaQuery<Cliente> criteria = entityManager.getCriteriaBuilder().createQuery(Cliente.class);
-            criteria.select(criteria.from(Cliente.class));
-            List<Cliente> clientes = entityManager.createQuery(criteria).getResultList();
-            for (Cliente cliente : clientes) {
-                System.out.println("Id: " + cliente.getId() + "\nNome: " + cliente.getNome() + "\nCPF: " + cliente.getCpf()
-                        + "\nEndereço: " + cliente.getLogradouro() + ", " + cliente.getBairro()
-                        + "\nCNPJ: " + cliente.getCnpj() + "\nTelefone: " + cliente.getTelefone());
-            }
-        } catch (Exception ex) {
-            System.err.println("Erro ao listar clientes: " + ex.getMessage());
-        } finally {
-            entityManager.close();
-        }
+    public Cliente ler(int id) {
+        return em.find(Cliente.class, id);
     }
 
-    public Cliente pesquisaId(int idCliente) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            Query query = entityManager.createQuery("FROM Cliente WHERE id = :id");
-            query.setParameter("id", idCliente);
-            List<Cliente> pesquisa = query.getResultList();
-            return pesquisa.isEmpty() ? null : pesquisa.get(0);
-        } catch (Exception e) {
-            System.err.println("Erro na pesquisa por ID: " + e.getMessage());
+    public void atualizar(Cliente cliente) {
+        em.getTransaction().begin();
+        em.merge(cliente);
+        em.getTransaction().commit();
+    }
+
+    public void remover(int id) {
+        em.getTransaction().begin();
+        Cliente cliente = em.find(Cliente.class, id);
+        if (cliente != null) {
+            em.remove(cliente);
+        }
+        em.getTransaction().commit();
+    }
+
+    public List<Cliente> listarTodos() {
+        return em.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList();
+    }
+    
+    public Cliente selecionar(int id) {
+        em.getTransaction().begin();
+        Cliente x = em.find(Cliente.class, id);
+        return x;
+    }
+    
+    public Cliente pesquisarNome(String nome) {
+        var cb = em.getCriteriaBuilder();
+        CriteriaQuery<Cliente> criteria = cb.createQuery(Cliente.class);
+        var root = criteria.from(Cliente.class);
+        criteria.select(root).where(cb.like(root.get("nome"), "%" + nome + "%"));
+        List<Cliente> lista = em.createQuery(criteria).getResultList();
+        if (lista.size() > 0) {
+            return lista.get(0);
+        } else {
             return null;
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public void close() {
-        if (entityManagerFactory.isOpen()) {
-            entityManagerFactory.close();
         }
     }
 }

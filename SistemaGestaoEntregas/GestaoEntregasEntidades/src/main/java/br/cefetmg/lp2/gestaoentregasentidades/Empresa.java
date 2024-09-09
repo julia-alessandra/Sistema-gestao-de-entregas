@@ -7,23 +7,18 @@ import java.util.List;
 @Entity
 @Table
 public class Empresa {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_empresa")
     private int id;
-    
-    @Column(name = "nome_empresa")
+
     private String nome;
-    
-    @Column(name = "cnpj_empresa")
     private String cnpj;
-    
-    @Column(name = "porcentagemComissao_empresa")
     private Double porcentagemComissaoEntregador;
 
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Funcionario> funcionarios;
-    
+
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Cliente> clientes;
 
@@ -35,8 +30,6 @@ public class Empresa {
 
     public Empresa() {
     }
-    
-    
 
     public void setId(int id) {
         this.id = id;
