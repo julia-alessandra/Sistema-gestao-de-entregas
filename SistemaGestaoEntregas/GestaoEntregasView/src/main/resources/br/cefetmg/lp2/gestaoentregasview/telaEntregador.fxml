@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,42 +11,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox id="fundoTela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../../styles/tela.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.cefetmg.lp2.gestaoentregasview.TelaInicialAdministradorController">
+<HBox id="fundoTela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../../styles/tela.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.cefetmg.lp2.gestaoentregasview.TelaEntregadorController">
    <children>
       <VBox>
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
                <children>
-                  <Text fill="WHITE" layoutX="418.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ENTREGADOR">
+                  <TableView fx:id="tabelaEntregas" layoutX="151.0" layoutY="149.0" prefHeight="504.0" prefWidth="977.0">
+                     <columns>
+                        <TableColumn fx:id="colCliente" prefWidth="163.4666862487793" text="Cliente" />
+                        <TableColumn fx:id="colEndereco" prefWidth="253.3333282470703" text="Endereço" />
+                        <TableColumn fx:id="colTelefone" prefWidth="204.0" text="Telefone" />
+                        <TableColumn fx:id="colStatus" prefWidth="180.5333251953125" text="Status" />
+                        <TableColumn fx:id="colPrazo" prefWidth="179.4666748046875" text="Prazo" />
+                     </columns>
+                  </TableView>
+                  <Text fill="WHITE" layoutX="454.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ENTREGADOR">
                      <font>
                         <Font name="Cambria Math" size="60.0" />
                      </font>
                   </Text>
-                  <Button id="buttonEmpresa" fx:id="buttonEmpresa" layoutX="538.0" layoutY="273.0" mnemonicParsing="false" onAction="#abrirGerenciarEmpresa" prefHeight="68.0" prefWidth="224.0" stylesheets="@../../../../styles/botao.css" text="Empresa">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Button>
-                  <Button id="buttonFuncionarios" fx:id="buttonFuncionarios" layoutX="538.0" layoutY="188.0" mnemonicParsing="false" onAction="#abrirGerenciarFuncionarios" prefHeight="68.0" prefWidth="224.0" stylesheets="@../../../../styles/botao.css" text="Funcionários">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Button>
-                  <Button id="buttonClientes" fx:id="buttonClientes" layoutX="538.0" layoutY="528.0" mnemonicParsing="false" onAction="#abrirGerenciarClientes" prefHeight="68.0" prefWidth="224.0" stylesheets="@../../../../styles/botao.css" text="Clientes">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Button>
-                  <Button id="buttonProdutos" fx:id="buttonProdutos" layoutX="538.0" layoutY="356.0" mnemonicParsing="false" onAction="#abrirGerenciarProdutos" prefHeight="58.0" prefWidth="224.0" stylesheets="@../../../../styles/botao.css" text="Produtos">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Button>
-                  <Button id="buttonPedidos" fx:id="buttonPedidos" layoutX="538.0" layoutY="442.0" mnemonicParsing="false" onAction="#abrirGerenciarPedidos" prefHeight="68.0" prefWidth="224.0" stylesheets="@../../../../styles/botao.css" text="Pedidos">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Button>
                   <Button id="buttonSair" fx:id="buttonSair" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#sair" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: 0;" stylesheets="@../../../../styles/botao.css">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
@@ -60,4 +46,3 @@
       </VBox>
    </children>
 </HBox>
-
