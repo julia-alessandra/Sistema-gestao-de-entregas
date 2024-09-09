@@ -1,49 +1,49 @@
 package br.cefetmg.lp2.gestaoentregasview;
 
+import br.cefetmg.lp2.gestaoentregascontroller.ProdutoController;
 import br.cefetmg.lp2.gestaoentregasentidades.Produto;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ListView;
 
-public class ListarProdutosController implements Initializable {
+import java.util.List;
 
-    @FXML
-    private Button buttonAtualizar;
+public class ListarProdutosController {
 
     @FXML
-    private Button buttonVoltar;
+    private ListView<String> listViewProdutos;
+
+    private ProdutoController produtoController = new ProdutoController();
 
     @FXML
-    private TableColumn<Produto, String> colDescricao;
-
-    @FXML
-    private TableColumn<Produto, String> colNome;
-
-    @FXML
-    private TableColumn<Produto, String> colValorUnitario;
-
-    @FXML
-    private TableView<Produto> tabelaProdutos;
-
-    @FXML
-    void atualizarDados() {
-
+    private void initialize() {
+        listarProdutos();
     }
-
+    
+    
     @FXML
     void voltar() throws IOException {
-        App.setRoot("gerenciarProdutos");
+        App.setRoot("TelaInicialAdministrador");
     }
-    
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
+    private void listarProdutos() {
+        List<Produto> produtos = produtoController.listar();
+        ObservableList<String> produtosTexto = FXCollections.observableArrayList();
+
+        for (Produto funcionario : produtos) {
+            String itemTexto = String.format("Nome: %s (  localização: %s )",
+                    funcionario.getNome(), 
+                    funcionario.getLocalizacao());
+            produtosTexto.add(itemTexto);
+        }
+
+        listViewProdutos.setItems(produtosTexto);
+    }
+
+    @FXML
+    public void salvarItemPedido() {
+        listarProdutos();
+    }
 }

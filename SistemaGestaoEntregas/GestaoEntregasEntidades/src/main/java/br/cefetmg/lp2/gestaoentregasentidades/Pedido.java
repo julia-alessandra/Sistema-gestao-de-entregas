@@ -3,6 +3,7 @@ package br.cefetmg.lp2.gestaoentregasentidades;
 import javax.persistence.*;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Entity
@@ -30,6 +31,21 @@ public class Pedido {
         this.cliente = cliente;
         this.itensPedido = itensPedido;
     }
+    
+        // Métodos para exibição no relatório
+    public String getNomeCliente() {
+        return cliente != null ? cliente.getNome() : "Desconhecido";
+    }
+
+    public String getDataFormatada() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
+    }
+
+    public String getValorFormatado() {
+        return String.format("R$ %.2f", valorTotal);
+    }
+
     
     public Pedido() {
 
